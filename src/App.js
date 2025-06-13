@@ -21,7 +21,8 @@ import { motion } from 'framer-motion';
 function App() {
   // State management for active page navigation
   const [activePage, setActivePage] = useState('about');
-
+  // State management for sidebar toggle (mobile)
+  const [sidebarActive, setSidebarActive] = useState(false);
   /**
    * Handles page navigation and scroll behavior
    * @param {string} page - The target page identifier
@@ -29,7 +30,14 @@ function App() {
   const handlePageChange = (page) => {
     setActivePage(page);
     window.scrollTo(0, 0); // Smooth scroll to top on page change
-  };  /**
+  };
+
+  /**
+   * Handles sidebar toggle for mobile devices
+   */
+  const handleSidebarToggle = () => {
+    setSidebarActive(!sidebarActive);
+  };/**
    * Effect hook for loading external scripts and resources
    * Handles dynamic loading of:
    * - Ionicons for UI icons
@@ -135,10 +143,9 @@ function App() {
           }
         }
       }}
-    >
-      {/* Sidebar */}
+    >      {/* Sidebar */}
       <motion.aside 
-        className="sidebar" 
+        className={`sidebar ${sidebarActive ? 'active' : ''}`}
         data-sidebar
         variants={sidebarVariants}
         initial="hidden"
@@ -161,11 +168,10 @@ function App() {
             transition={{ duration: 0.6, delay: 0.7 }}
           >            <h1 className="name" title="Subhashish Tarafdar">Subhashish <br/>Tarafdar</h1>
             <p className="title">React Native Developer</p>
-          </motion.div>
-
-          <motion.button 
+          </motion.div>          <motion.button 
             className="info_more-btn" 
             data-sidebar-btn
+            onClick={handleSidebarToggle}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.9 }}
