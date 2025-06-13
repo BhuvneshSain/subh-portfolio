@@ -90,8 +90,15 @@
 }
 
 .skill-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255, 183, 0, 0.2);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(250, 215, 110, 0.15), 
+              0 8px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.skill-item:hover::before {
+  background: linear-gradient(135deg, 
+    var(--bg-gradient-jet), 
+    rgba(250, 215, 110, 0.05)) !important;
 }
 
 .skill-icon {
@@ -111,17 +118,6 @@
   transform: scale(1.1);
 }
 
-.skill-name {
-  color: var(--white-2);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-align: center;
-  line-height: 1.3;
-  margin-top: auto;
-}
-
-/* Icon color themes - All icons now use #fad76e */
 .skill-icon.react-native,
 .skill-icon.ios,
 .skill-icon.flutter,
@@ -152,6 +148,33 @@
   color: #2c2c2c;
 }
 
+.skill-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white-2);
+  text-align: center;
+  line-height: 1.4;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+.skill-item:hover .skill-name {
+  color: #fad76e !important;
+  font-weight: 600;
+}
+
+.skill-icon ion-icon {
+  font-size: 28px;
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover .skill-icon ion-icon {
+  filter: brightness(1.2) drop-shadow(0 4px 8px rgba(250, 215, 110, 0.3));
+  transform: scale(1.05);
+}
+
 /* Custom navbar active state styling */
 .navbar-link.active {
   color: #fad76e !important;
@@ -178,6 +201,245 @@ article:not(.active) {
 article.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Service Cards Hover Effects */
+.service-item {
+  transition: all 0.3s ease !important;
+  cursor: pointer;
+}
+
+.service-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(250, 215, 110, 0.15), 
+              0 8px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.service-item:hover::before {
+  background: linear-gradient(135deg, 
+    var(--bg-gradient-jet), 
+    rgba(250, 215, 110, 0.05)) !important;
+}
+
+.service-icon-box {
+  transition: all 0.3s ease;
+}
+
+.service-item:hover .service-icon-box {
+  transform: scale(1.1);
+}
+
+.service-item:hover .service-icon-box img {
+  filter: brightness(1.2) drop-shadow(0 4px 8px rgba(250, 215, 110, 0.3));
+}
+
+.service-item-title {
+  transition: color 0.3s ease;
+}
+
+.service-item:hover .service-item-title {
+  color: #fad76e !important;
+}
+
+.service-item-text {
+  transition: color 0.3s ease;
+}
+
+.service-item:hover .service-item-text {
+  color: var(--white-2) !important;
+}
+
+/* Project Cards Hover Effects - Identical to Service Cards */
+.project-card {
+  transition: all 0.3s ease !important;
+  cursor: pointer;
+  position: relative;
+  background: var(--border-gradient-onyx);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-2);
+  z-index: 1;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(250, 215, 110, 0.15), 
+              0 8px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.project-card:hover::before {
+  background: linear-gradient(135deg, 
+    var(--bg-gradient-jet), 
+    rgba(250, 215, 110, 0.05)) !important;
+}
+
+.project-title {
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-title {
+  color: #fad76e !important;
+}
+
+.project-description {
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-description {
+  color: var(--white-2) !important;
+}
+
+.tech-badge {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .tech-badge {
+  background: linear-gradient(135deg, #fad76e, #e6c455) !important;
+  color: #2c2c2c !important;
+  transform: translateY(-2px);
+}
+
+/* Enhanced Mobile Navigation Styling */
+@media (max-width: 580px) {
+  /* Stronger navbar background and borders for mobile */
+  .navbar {
+    background: hsla(240, 1%, 15%, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 2px solid rgba(250, 215, 110, 0.2) !important;
+    border-bottom: none !important;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5), 
+                0 -2px 10px rgba(250, 215, 110, 0.15) !important;
+    padding: 8px 0 !important;
+    height: 75px !important;
+    display: flex !important;
+    align-items: center !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+  }
+
+  .navbar-list {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    padding: 0 10px !important;
+    gap: 5px !important;
+    height: 100% !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .navbar-item {
+    flex: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    max-width: calc(20% - 4px) !important;
+  }
+
+  .navbar-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 12px 4px !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    width: 100% !important;
+    background: hsla(240, 1%, 25%, 0.6) !important;
+    border: 1px solid hsla(240, 1%, 35%, 0.8) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    color: var(--light-gray) !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    min-height: 50px !important;
+  }
+
+  /* Remove all icon pseudo-elements for clean text-only navigation */
+  .navbar-link::before,
+  .navbar-link::after {
+    display: none !important;
+  }
+
+  /* Enhanced hover states - text only */
+  .navbar-link:hover {
+    background: hsla(240, 1%, 30%, 0.9) !important;
+    border: 1px solid rgba(250, 215, 110, 0.4) !important;
+    color: #fad76e !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 6px 15px rgba(250, 215, 110, 0.25) !important;
+    font-weight: 700 !important;
+  }
+
+  /* Active state styling - text only */
+  .navbar-link.active {
+    background: linear-gradient(135deg, 
+      rgba(250, 215, 110, 0.2), 
+      rgba(250, 215, 110, 0.1)) !important;
+    border: 1px solid rgba(250, 215, 110, 0.6) !important;
+    color: #fad76e !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 20px rgba(250, 215, 110, 0.4), 
+                inset 0 1px 3px rgba(250, 215, 110, 0.2) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* Add separator line above navbar */
+  .navbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(250, 215, 110, 0.4) 50%, 
+      transparent);
+    border-radius: 2px;
+  }
+
+  /* Ensure all tabs fit properly */
+  .navbar-list {
+    overflow-x: hidden !important;
+  }
+}
+
+/* Very small screens - adjust font and spacing */
+@media (max-width: 350px) {
+  .navbar-link {
+    font-size: 10px !important;
+    padding: 10px 2px !important;
+    min-height: 45px !important;
+    font-weight: 600 !important;
+  }
+
+  .navbar {
+    height: 65px !important;
+    padding: 5px 0 !important;
+  }
+}
+
+/* Ensure proper spacing for main content on mobile */
+@media (max-width: 580px) {
+  main {
+    padding-bottom: 85px !important;
+  }
 }
 
 /* Responsive Design */

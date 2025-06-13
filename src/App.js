@@ -179,7 +179,7 @@ function App() {  const [activePage, setActivePage] = useState('about');
                 <ion-icon name="mail-outline"></ion-icon>
               </div>              <div className="contact-info">
                 <p className="contact-title">Email</p>
-                <a href="mailto:subhashish@example.com" className="contact-link">subhashish@example.com</a>
+                <a href="mailto:anshfitness143@gmail.com" className="contact-link">anshfitness143@gmail.com</a>
               </div>
             </li>
 
@@ -254,8 +254,7 @@ function App() {  const [activePage, setActivePage] = useState('about');
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <motion.ul 
+        >          <motion.ul 
             className="navbar-list"
             variants={{
               hidden: { opacity: 0 },
@@ -276,10 +275,10 @@ function App() {  const [activePage, setActivePage] = useState('about');
                 hidden: { opacity: 0, y: -10 },
                 visible: { opacity: 1, y: 0 }
               }}
-            >              
-            <motion.button 
+            >
+              <motion.button 
                 className={`navbar-link ${activePage === 'about' ? 'active' : ''}`}
-                data-nav-link
+                data-nav-link="about"
                 onClick={() => handlePageChange('about')}
                 whileHover={{ scale: 1.05, color: "#fad76e" }}
                 whileTap={{ scale: 0.95 }}
@@ -293,9 +292,11 @@ function App() {  const [activePage, setActivePage] = useState('about');
               variants={{
                 hidden: { opacity: 0, y: -10 },
                 visible: { opacity: 1, y: 0 }
-              }}            >              <motion.button 
+              }}
+            >
+              <motion.button 
                 className={`navbar-link ${activePage === 'projects' ? 'active' : ''}`}
-                data-nav-link
+                data-nav-link="projects"
                 onClick={() => handlePageChange('projects')}
                 whileHover={{ scale: 1.05, color: "#fad76e" }}
                 whileTap={{ scale: 0.95 }}
@@ -303,15 +304,17 @@ function App() {  const [activePage, setActivePage] = useState('about');
                 Projects
               </motion.button>
             </motion.li>
+
             <motion.li 
               className="navbar-item"
               variants={{
                 hidden: { opacity: 0, y: -10 },
                 visible: { opacity: 1, y: 0 }
               }}
-            >              <motion.button 
+            >
+              <motion.button 
                 className={`navbar-link ${activePage === 'skills' ? 'active' : ''}`}
-                data-nav-link
+                data-nav-link="skills"
                 onClick={() => handlePageChange('skills')}
                 whileHover={{ scale: 1.05, color: "#fad76e" }}
                 whileTap={{ scale: 0.95 }}
@@ -319,15 +322,17 @@ function App() {  const [activePage, setActivePage] = useState('about');
                 Skills
               </motion.button>
             </motion.li>
-                     <motion.li 
+
+            <motion.li 
               className="navbar-item"
               variants={{
                 hidden: { opacity: 0, y: -10 },
                 visible: { opacity: 1, y: 0 }
               }}
-            >              <motion.button 
+            >
+              <motion.button 
                 className={`navbar-link ${activePage === 'resume' ? 'active' : ''}`}
-                data-nav-link
+                data-nav-link="resume"
                 onClick={() => handlePageChange('resume')}
                 whileHover={{ scale: 1.05, color: "#fad76e" }}
                 whileTap={{ scale: 0.95 }}
@@ -335,16 +340,17 @@ function App() {  const [activePage, setActivePage] = useState('about');
                 Resume
               </motion.button>
             </motion.li>
+
             <motion.li 
               className="navbar-item"
               variants={{
                 hidden: { opacity: 0, y: -10 },
                 visible: { opacity: 1, y: 0 }
               }}
-              
-            >              <motion.button 
+            >
+              <motion.button 
                 className={`navbar-link ${activePage === 'contact' ? 'active' : ''}`}
-                data-nav-link
+                data-nav-link="contact"
                 onClick={() => handlePageChange('contact')}
                 whileHover={{ scale: 1.05, color: "#fad76e" }}
                 whileTap={{ scale: 0.95 }}
@@ -391,12 +397,17 @@ function App() {  const [activePage, setActivePage] = useState('about');
           >
             <h3 className="h3 service-title">What I'm Doing</h3>
 
-            <ul className="service-list">
-              <motion.li 
+            <ul className="service-list">              <motion.li 
                 className="service-item"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="service-icon-box">
                   <img src="./assets/images/icon-dev.svg" alt="Mobile Apps icon" width="40" />
@@ -407,13 +418,17 @@ function App() {  const [activePage, setActivePage] = useState('about');
                     Professional development of cross-platform applications using React Native and Flutter for iOS and Android platforms.
                   </p>
                 </div>
-              </motion.li>
-
-              <motion.li 
+              </motion.li>              <motion.li 
                 className="service-item"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="service-icon-box">
                   <img src="./assets/images/icon-design.svg" alt="Web Development icon" width="40" />
@@ -424,13 +439,17 @@ function App() {  const [activePage, setActivePage] = useState('about');
                     High-quality development of responsive websites and web applications using modern technologies like React and Node.js.
                   </p>
                 </div>
-              </motion.li>
-
-              <motion.li 
+              </motion.li>              <motion.li 
                 className="service-item"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="service-icon-box">
                   <img src="./assets/images/icon-app.svg" alt="Cloud Solutions icon" width="40" />
@@ -441,13 +460,17 @@ function App() {  const [activePage, setActivePage] = useState('about');
                     Scalable backend services and cloud architecture using AWS Amplify, Firebase, and Azure for robust application infrastructure.
                   </p>
                 </div>
-              </motion.li>
-
-              <motion.li 
+              </motion.li>              <motion.li 
                 className="service-item"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.4 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="service-icon-box">
                   <img src="./assets/images/icon-photo.svg" alt="API Integration icon" width="40" />
@@ -467,11 +490,22 @@ function App() {  const [activePage, setActivePage] = useState('about');
         <article className={`portfolio ${activePage === 'projects' ? 'active' : ''}`} data-page="projects" style={{ display: activePage === 'projects' ? 'block' : 'none' }}>
           <header>
             <h2 className="h2 article-title">Projects</h2>
-          </header>
-
-          <section className="projects">
+          </header>          <section className="projects">
             <div className="project-grid">
-              <div className="project-card active" data-filter-item data-category="react native">
+              <motion.div 
+                className="project-card active" 
+                data-filter-item 
+                data-category="react native"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <div className="project-content">
                   <h3 className="project-title">Sandlines</h3>
                   <p className="project-description">Voter engagement platform built with React Native, TypeScript, Firebase, and Stripe integration for secure payments and real-time data synchronization.</p>
@@ -482,9 +516,22 @@ function App() {  const [activePage, setActivePage] = useState('about');
                     <span className="tech-badge">Stripe</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="project-card active" data-filter-item data-category="react native">
+              <motion.div 
+                className="project-card active" 
+                data-filter-item 
+                data-category="react native"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <div className="project-content">
                   <h3 className="project-title">RippleStreet</h3>
                   <p className="project-description">Social event platform leveraging React Native and AWS Amplify for scalable backend services, user authentication, and real-time event management.</p>
@@ -494,9 +541,22 @@ function App() {  const [activePage, setActivePage] = useState('about');
                     <span className="tech-badge">Authentication</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="project-card active" data-filter-item data-category="react native">
+              <motion.div 
+                className="project-card active" 
+                data-filter-item 
+                data-category="react native"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <div className="project-content">
                   <h3 className="project-title">Noritz Procard</h3>
                   <p className="project-description">Professional installer tool with local database management, data encryption, and offline functionality for field technicians.</p>
@@ -506,10 +566,22 @@ function App() {  const [activePage, setActivePage] = useState('about');
                     <span className="tech-badge">Encryption</span>
                     <span className="tech-badge">Offline</span>
                   </div>
-                </div>
-              </div>
+                </div>              </motion.div>
 
-              <div className="project-card active" data-filter-item data-category="flutter">
+              <motion.div 
+                className="project-card active" 
+                data-filter-item 
+                data-category="flutter"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <div className="project-content">
                   <h3 className="project-title">Face App</h3>
                   <p className="project-description">Face detection application built with Flutter and Google ML Kit for real-time facial recognition and analysis features.</p>
@@ -519,9 +591,22 @@ function App() {  const [activePage, setActivePage] = useState('about');
                     <span className="tech-badge">Computer Vision</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="project-card active" data-filter-item data-category="react native">
+              <motion.div 
+                className="project-card active" 
+                data-filter-item 
+                data-category="react native"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.03,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <div className="project-content">
                   <h3 className="project-title">Identify That</h3>
                   <p className="project-description">Plant identification app using React Native with Wikipedia API integration for comprehensive plant information and recognition capabilities.</p>
@@ -529,12 +614,11 @@ function App() {  const [activePage, setActivePage] = useState('about');
                     <span className="tech-badge">React Native</span>
                     <span className="tech-badge">Wikipedia API</span>
                     <span className="tech-badge">Image Recognition</span>
-                  </div>
-                </div>
-              </div>
+                  </div>                </div>
+              </motion.div>
             </div>
           </section>
-        </article>        {/* Skills Section */}
+        </article>{/* Skills Section */}
         <article className={`skills ${activePage === 'skills' ? 'active' : ''}`} data-page="skills" style={{ display: activePage === 'skills' ? 'block' : 'none' }}>
           <header>
             <h2 className="h2 article-title">Skills</h2>
@@ -547,27 +631,58 @@ function App() {  const [activePage, setActivePage] = useState('about');
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <h3 className="skills-category-title">Cross-platform & Native Development</h3>
+            >              <h3 className="skills-category-title">Cross-platform & Native Development</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon react-native">
                     <ion-icon name="phone-portrait-outline"></ion-icon>
                   </div>
                   <span className="skill-name">React Native</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon ios">
                     <ion-icon name="logo-apple"></ion-icon>
-                  </div>
-                  <span className="skill-name">iOS (Swift)</span>
-                </div>
-                <div className="skill-item">
+                  </div>                  <span className="skill-name">iOS (Swift)</span>
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon flutter">
                     <ion-icon name="diamond-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Flutter</span>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -577,25 +692,44 @@ function App() {  const [activePage, setActivePage] = useState('about');
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <h3 className="skills-category-title">Languages & Packages</h3>
+            >              <h3 className="skills-category-title">Languages & Packages</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon javascript">
                     <ion-icon name="logo-javascript"></ion-icon>
                   </div>
                   <span className="skill-name">JavaScript</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon typescript">
                     <ion-icon name="code-slash-outline"></ion-icon>
                   </div>
                   <span className="skill-name">TypeScript</span>
-                </div>
+                </motion.div>
               </div>
-            </motion.div>
-
-            {/* State Management & Navigation */}
+            </motion.div>            {/* State Management & Navigation */}
             <motion.div 
               className="skills-category"
               initial={{ opacity: 0, y: 30 }}
@@ -604,22 +738,42 @@ function App() {  const [activePage, setActivePage] = useState('about');
             >
               <h3 className="skills-category-title">State Management & Navigation</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon redux">
                     <ion-icon name="logo-react"></ion-icon>
                   </div>
                   <span className="skill-name">React Redux</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon navigation">
                     <ion-icon name="navigate-outline"></ion-icon>
                   </div>
                   <span className="skill-name">React Navigation</span>
-                </div>
+                </motion.div>
               </div>
-            </motion.div>
-
-            {/* Backend & Cloud Services */}
+            </motion.div>            {/* Backend & Cloud Services */}
             <motion.div 
               className="skills-category"
               initial={{ opacity: 0, y: 30 }}
@@ -628,34 +782,76 @@ function App() {  const [activePage, setActivePage] = useState('about');
             >
               <h3 className="skills-category-title">Backend & Cloud Services</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon nodejs">
                     <ion-icon name="logo-nodejs"></ion-icon>
                   </div>
                   <span className="skill-name">Node.js</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon express">
                     <ion-icon name="server-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Express.js</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon aws">
                     <ion-icon name="cloud-outline"></ion-icon>
                   </div>
                   <span className="skill-name">AWS Amplify</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.3 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon azure">
                     <ion-icon name="layers-outline"></ion-icon>
                   </div>
                   <span className="skill-name">MS Azure</span>
-                </div>
+                </motion.div>
               </div>
-            </motion.div>
-
-            {/* Databases & Authentication */}
+            </motion.div>            {/* Databases & Authentication */}
             <motion.div 
               className="skills-category"
               initial={{ opacity: 0, y: 30 }}
@@ -664,28 +860,59 @@ function App() {  const [activePage, setActivePage] = useState('about');
             >
               <h3 className="skills-category-title">Databases & Authentication</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.4 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon firestore">
                     <ion-icon name="flame-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Firebase Firestore</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.5 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon auth">
                     <ion-icon name="shield-checkmark-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Firebase Authentication</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.6 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon functions">
                     <ion-icon name="flash-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Cloud Functions</span>
-                </div>
+                </motion.div>
               </div>
-            </motion.div>
-
-            {/* Push & Notifications */}
+            </motion.div>            {/* Push & Notifications */}
             <motion.div 
               className="skills-category"
               initial={{ opacity: 0, y: 30 }}
@@ -694,12 +921,23 @@ function App() {  const [activePage, setActivePage] = useState('about');
             >
               <h3 className="skills-category-title">Push & Notifications</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.7 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon notifications">
                     <ion-icon name="notifications-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Firebase Push Notifications</span>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -712,18 +950,40 @@ function App() {  const [activePage, setActivePage] = useState('about');
             >
               <h3 className="skills-category-title">Monetization & Payments</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.8 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon stripe">
                     <ion-icon name="card-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Stripe</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.9 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon admob">
                     <ion-icon name="trending-up-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Google AdMob</span>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -736,18 +996,40 @@ function App() {  const [activePage, setActivePage] = useState('about');
             >
               <h3 className="skills-category-title">APIs & Integrations</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 2.0 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon places">
                     <ion-icon name="location-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Google Places Autocomplete</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 2.1 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon woocommerce">
                     <ion-icon name="storefront-outline"></ion-icon>
                   </div>
                   <span className="skill-name">WooCommerce API</span>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -760,48 +1042,108 @@ function App() {  const [activePage, setActivePage] = useState('about');
             >
               <h3 className="skills-category-title">Development Tools & Collaboration</h3>
               <div className="skills-grid">
-                <div className="skill-item">
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 2.2 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon xcode">
                     <ion-icon name="logo-apple"></ion-icon>
                   </div>
                   <span className="skill-name">Xcode</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 2.3 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon android-studio">
                     <ion-icon name="logo-android"></ion-icon>
                   </div>
                   <span className="skill-name">Android Studio</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 2.4 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon vscode">
                     <ion-icon name="code-slash-outline"></ion-icon>
                   </div>
                   <span className="skill-name">VSCode</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 2.5 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon git">
                     <ion-icon name="git-branch-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Git</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 2.6 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon devops">
                     <ion-icon name="people-outline"></ion-icon>
                   </div>
                   <span className="skill-name">Azure DevOps</span>
-                </div>
-                <div className="skill-item">
-                  <div className="skill-icon gitlab">
-                    <ion-icon name="git-network-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">GitLab</span>
-                </div>
-                <div className="skill-item">
+                </motion.div>
+                <motion.div 
+                  className="skill-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 2.7 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <div className="skill-icon github">
                     <ion-icon name="logo-github"></ion-icon>
                   </div>
                   <span className="skill-name">GitHub</span>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           </section>
