@@ -1,28 +1,44 @@
+/**
+ * React Portfolio Application
+ * 
+ * This is the main component for Subhashish Tarafdar's portfolio website.
+ * Features include:
+ * - Single-page application with smooth navigation
+ * - Responsive design with mobile-first approach
+ * - Interactive animations using Framer Motion
+ * - Five main sections: About, Projects, Skills, Resume, Contact
+ * - Dynamic skill icons with unified golden color scheme
+ * - Netlify deployment ready with proper meta tags
+ * 
+ * @author Subhashish Tarafdar
+ * @version 2.0
+ */
+
 import './App.css';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-function App() {  const [activePage, setActivePage] = useState('about');
+function App() {
+  // State management for active page navigation
+  const [activePage, setActivePage] = useState('about');
 
+  /**
+   * Handles page navigation and scroll behavior
+   * @param {string} page - The target page identifier
+   */
   const handlePageChange = (page) => {
     setActivePage(page);
-    window.scrollTo(0, 0);
-  };
-
+    window.scrollTo(0, 0); // Smooth scroll to top on page change
+  };  /**
+   * Effect hook for loading external scripts and resources
+   * Handles dynamic loading of:
+   * - Ionicons for UI icons
+   * Note: Removed script.js loading to prevent conflicts with React navigation
+   */
   useEffect(() => {
-    // Check if script is already loaded
-    const existingScript = document.querySelector('script[src="/assets/js/script.js"]');
-    const existingCSS = document.querySelector('link[href="/assets/css/style.css"]');
-    
-    let script, link, ioniconsESM, ioniconsNoModule;
+    let ioniconsESM, ioniconsNoModule;
 
-    // Load the portfolio CSS only if not already loaded
-    if (!existingCSS) {
-      link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/assets/css/style.css';
-      document.head.appendChild(link);
-    }
+    // Note: CSS is now loaded directly via index.css import - no dynamic loading needed
 
     // Load Ionicons only if not already loaded
     if (!document.querySelector('script[src*="ionicons.esm.js"]')) {
@@ -37,40 +53,22 @@ function App() {  const [activePage, setActivePage] = useState('about');
       ioniconsNoModule.setAttribute('nomodule', '');
       ioniconsNoModule.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js';
       document.head.appendChild(ioniconsNoModule);
-    }
-
-    // Delay script loading to ensure DOM is ready
-    const loadScript = () => {
-      if (!existingScript) {
-        script = document.createElement('script');
-        script.src = '/assets/js/script.js';
-        script.async = true;
-        document.body.appendChild(script);
-      }
-    };
-
-    // Load script after a short delay to ensure React has rendered
-    const timeoutId = setTimeout(loadScript, 100);
-
+    }    // Cleanup function for Ionicons if needed
     return () => {
-      clearTimeout(timeoutId);
-      // Cleanup only if we created the elements
-      if (script && script.parentNode) {
-        document.body.removeChild(script);
-      }
-      if (link && link.parentNode) {
-        document.head.removeChild(link);
-      }
       if (ioniconsESM && ioniconsESM.parentNode) {
         document.head.removeChild(ioniconsESM);
       }
       if (ioniconsNoModule && ioniconsNoModule.parentNode) {
         document.head.removeChild(ioniconsNoModule);
       }
-    };
-  }, []);
+    };}, []);
 
-  // Animation variants
+  /**
+   * Animation variants for Framer Motion
+   * These define the entrance animations for different components
+   */
+  
+  // Sidebar animation: slides in from left
   const sidebarVariants = {
     hidden: { x: -300, opacity: 0 },
     visible: { 
@@ -83,6 +81,7 @@ function App() {  const [activePage, setActivePage] = useState('about');
     }
   };
 
+  // Main content animation: slides in from right with delay
   const mainContentVariants = {
     hidden: { x: 100, opacity: 0 },
     visible: { 
@@ -93,8 +92,9 @@ function App() {  const [activePage, setActivePage] = useState('about');
         ease: "easeOut",
         delay: 0.2
       }
-    }
-  };
+    }  };
+  
+  // Page transition animation: fade and slide up effect
   const pageVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -111,9 +111,16 @@ function App() {  const [activePage, setActivePage] = useState('about');
       transition: {
         duration: 0.3
       }
-    }
-  };
+    }  };
 
+  /**
+   * Main JSX Return - Portfolio Layout
+   * Structure:
+   * - Main container with entrance animation
+   * - Sidebar with personal info and navigation
+   * - Main content area with dynamic page rendering
+   * - Mobile-responsive navigation bar
+   */
   return (
     <motion.main
       initial="hidden"

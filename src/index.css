@@ -1,15 +1,30 @@
 /*-----------------------------------*\
-  #style.css
+  #REACT PORTFOLIO STYLES
 \*-----------------------------------*/
 
-
 /**
- * copyright 2022 @codewithsadee
+ * Main Stylesheet for Subhashish Tarafdar's Portfolio
+ * 
+ * This CSS file contains all styling for the React portfolio application.
+ * It includes:
+ * - CSS Custom Properties (CSS Variables) for consistent theming
+ * - Responsive design with mobile-first approach
+ * - Dark theme with golden accent colors (#fad76e)
+ * - Smooth animations and transitions
+ * - Component-specific styling for all portfolio sections
+ * 
+ * Structure:
+ * 1. Custom Properties (CSS Variables)
+ * 2. Reset and Base Styles
+ * 3. Reused Components
+ * 4. Layout Components (Sidebar, Main, Navbar)
+ * 5. Page-specific Sections (About, Projects, Skills, Resume, Contact)
+ * 6. Responsive Media Queries
+ * 
+ * @author Subhashish Tarafdar
+ * @version 2.0
+ * @updated 2025
  */
-
-
-
-
 
 /*-----------------------------------*\
   #CUSTOM PROPERTY
@@ -18,10 +33,12 @@
 :root {
 
   /**
-   * colors
+   * COLORS
+   * All color variables used throughout the portfolio
+   * Theme: Dark background with golden (#fad76e) accents
    */
 
-  /* gradient */
+  /* Gradient backgrounds for cards and components */
 
   --bg-gradient-onyx: linear-gradient(
     to bottom right, 
@@ -451,8 +468,18 @@ main {
 
 
 /*-----------------------------------*\
-  #NAVBAR
+  #NAVBAR - MOBILE NAVIGATION BAR
 \*-----------------------------------*/
+
+/**
+ * Mobile-first navigation bar that sticks to the bottom of the screen
+ * Features:
+ * - Fixed positioning at bottom for mobile accessibility
+ * - Glass-morphism effect with backdrop blur
+ * - Text-only navigation for clean design
+ * - Smooth hover transitions
+ * - Active state highlighting with golden color
+ */
 
 .navbar {
   position: fixed;
@@ -1149,8 +1176,19 @@ main {
 
 
 /*-----------------------------------*\
-  #SKILLS
+  #SKILLS - TECHNICAL SKILLS SHOWCASE
 \*-----------------------------------*/
+
+/**
+ * Skills section displaying technical competencies
+ * Features:
+ * - Grid layout for skill icons and cards
+ * - 25+ skills organized by categories (Frontend, Backend, Tools, Databases)
+ * - Unified golden color scheme (#fad76e) for all skill icons
+ * - Hover effects with smooth transitions
+ * - Responsive grid that adapts to screen size
+ * - Card-based layout with gradient borders
+ */
 
 .blog-posts { margin-bottom: 10px; }
 
