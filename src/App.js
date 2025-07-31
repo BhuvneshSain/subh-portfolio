@@ -10,7 +10,7 @@
  * - Dynamic skill icons with unified golden color scheme
  * - Netlify deployment ready with proper meta tags
  * 
- * @author Subhashish Tarafdar
+ * @author Bhuvnesh Sain
  * @version 2.0
  */
 
@@ -528,6 +528,37 @@ function App() {
                     <span className="tech-badge">Firebase</span>
                     <span className="tech-badge">Stripe</span>
                   </div>
+                  <a href="https://apps.apple.com/us/app/sandlines/id6469634537" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     className="project-link">
+                    <span style={{ 
+                      background: '#ffffff',
+                      color: '#000000',
+                      marginTop: '20px',
+                      padding: '10px 20px',
+                      borderRadius: '30px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      fontSize: '0.95em',
+                      fontWeight: '500',
+                      boxShadow: '0 4px 15px rgba(255, 255, 255, 0.15)',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 255, 255, 0.25)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 255, 255, 0.15)';
+                    }}>
+                      Take me there <ion-icon name="rocket-outline" style={{ fontSize: '1.2em' }}></ion-icon>
+                    </span>
+                  </a>
                 </div>
               </motion.div>
 
@@ -552,7 +583,39 @@ function App() {
                     <span className="tech-badge">React Native</span>
                     <span className="tech-badge">AWS Amplify</span>
                     <span className="tech-badge">Authentication</span>
+              
                   </div>
+                  <a href="https://apps.apple.com/us/app/ripple-street/id1623388148" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     className="project-link">
+                    <span style={{ 
+                      background: '#ffffff',
+                      color: '#000000',
+                      marginTop: '20px',
+                      padding: '10px 20px',
+                      borderRadius: '30px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      fontSize: '0.95em',
+                      fontWeight: '500',
+                      boxShadow: '0 4px 15px rgba(255, 255, 255, 0.15)',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 255, 255, 0.25)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 255, 255, 0.15)';
+                    }}>
+                      Take me there <ion-icon name="rocket-outline" style={{ fontSize: '1.2em' }}></ion-icon>
+                    </span>
+                  </a>
                 </div>
               </motion.div>
 
@@ -579,6 +642,37 @@ function App() {
                     <span className="tech-badge">Encryption</span>
                     <span className="tech-badge">Offline</span>
                   </div>
+                  <a href="https://play.google.com/store/apps/details?id=com.org.noritz" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     className="project-link">
+                    <span style={{ 
+                      background: '#ffffff',
+                      color: '#000000',
+                      marginTop: '20px',
+                      padding: '10px 20px',
+                      borderRadius: '30px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      fontSize: '0.95em',
+                      fontWeight: '500',
+                      boxShadow: '0 4px 15px rgba(255, 255, 255, 0.15)',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 255, 255, 0.25)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 255, 255, 0.15)';
+                    }}>
+                      Take me there <ion-icon name="rocket-outline" style={{ fontSize: '1.2em' }}></ion-icon>
+                    </span>
+                  </a>
                 </div>              </motion.div>
 
               <motion.div 
@@ -627,11 +721,14 @@ function App() {
                     <span className="tech-badge">React Native</span>
                     <span className="tech-badge">Wikipedia API</span>
                     <span className="tech-badge">Image Recognition</span>
-                  </div>                </div>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </section>
-        </article>{/* Skills Section */}
+        </article>
+
+        {/* Skills Section */}
         <article className={`skills ${activePage === 'skills' ? 'active' : ''}`} data-page="skills" style={{ display: activePage === 'skills' ? 'block' : 'none' }}>
           <header>
             <h2 className="h2 article-title">Skills</h2>
