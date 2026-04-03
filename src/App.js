@@ -6,6 +6,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import ProjectCard from './ProjectCard';
 
 function App() {
   const [activePage, setActivePage] = useState('about');
@@ -166,47 +167,53 @@ function App() {
 
   const projects = [
     {
-      title: 'Sandlines',
-      subtitle: 'Project Atlas',
-      description: 'Mobile platform enabling political engagement through campaigns and real-time location-aware updates using React Native Maps and WebSockets.',
-      tags: ['React Native', 'TypeScript', 'Firebase', 'WebSockets', 'Maps'],
-      links: [{ label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/sandlines/id6469634537' }],
-    },
-    {
       title: 'RippleStreet',
-      subtitle: 'Project Aurora',
+      label: 'Project Aurora',
       description: 'Consumer lifestyle app enabling users to participate in marketing campaigns and brand activities with deep linking and push notification flows.',
-      tags: ['React Native', 'AWS Amplify', 'Deep Linking', 'Push Notifications'],
+      image: '/assets/images/Ripplestreet.png',
+      tech: ['React Native', 'AWS Amplify', 'Deep Linking', 'Push Notifications'],
       links: [
         { label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/ripple-street/id1623388148' },
         { label: 'Play Store', icon: 'logo-google-playstore', url: 'https://play.google.com/store/apps/details?id=com.ripplestreetfun' },
       ],
-    },
-    {
-      title: 'Noritz Procard',
-      subtitle: 'Project Keystone',
-      description: 'Business app for members: lead management, warranties, service calls, installation guides, and companion WiFi adapter setup with QR scanning.',
-      tags: ['React Native', 'SQLite', 'Encryption', 'Offline-first', 'QR Scan'],
-      links: [
-        { label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/procard/id1110311645' },
-        { label: 'Play Store', icon: 'logo-google-playstore', url: 'https://play.google.com/store/apps/details?id=com.org.noritz' },
-      ],
+      featured: true,
     },
     {
       title: 'Noritz Connect',
-      subtitle: 'Project Helix',
+      label: 'Project Helix',
       description: 'IoT mobile app enabling real-time monitoring and remote control of smart water heating systems with geolocation and background tasks.',
-      tags: ['React Native', 'IoT', 'Geolocation', 'Background Tasks', 'Real-time'],
+      image: '/assets/images/Noritz-Connect.png',
+      tech: ['React Native', 'IoT', 'Geolocation', 'Background Tasks', 'Real-time'],
       links: [
         { label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/noritz-connect/id1227949334' },
         { label: 'Play Store', icon: 'logo-google-playstore', url: 'https://play.google.com/store/apps/details?id=com.noritz.iot&hl=en_IN' },
       ],
     },
     {
+      title: 'Sandlines',
+      label: 'Project Atlas',
+      description: 'Mobile platform enabling political engagement through campaigns and real-time location-aware updates using React Native Maps and WebSockets.',
+      image: '/assets/images/Sandlines.png',
+      tech: ['React Native', 'TypeScript', 'Firebase', 'WebSockets', 'Maps'],
+      links: [{ label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/sandlines/id6469634537' }],
+    },
+    {
+      title: 'Noritz Procard',
+      label: 'Project Keystone',
+      description: 'Business app for members: lead management, warranties, service calls, installation guides, and companion WiFi adapter setup with QR scanning.',
+      image: '/assets/images/Noritz-Procard.png',
+      tech: ['React Native', 'SQLite', 'Encryption', 'Offline-first', 'QR Scan'],
+      links: [
+        { label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/procard/id1110311645' },
+        { label: 'Play Store', icon: 'logo-google-playstore', url: 'https://play.google.com/store/apps/details?id=com.org.noritz' },
+      ],
+    },
+    {
       title: 'Chromaflo',
-      subtitle: 'Project Spectrum',
+      label: 'Project Spectrum',
       description: 'Industrial mobile tool for color formulation and pigment selection with offline-first SQLite sync and camera-based color capture.',
-      tags: ['React Native', 'Camera', 'SQLite', 'Offline-first', 'Flutter'],
+      image: '/assets/images/Chromaflo.png',
+      tech: ['React Native', 'Camera', 'SQLite', 'Offline-first', 'Flutter'],
       links: [{ label: 'Website', icon: 'globe-outline', url: 'https://bluepony.com/pages/chromaflo' }],
     },
   ];
@@ -515,46 +522,9 @@ function App() {
             <h2 className="h2 article-title">Projects</h2>
           </header>
           <section className="projects">
-            <div className="project-grid">
+            <div className="project-grid-premium">
               {projects.map((proj, i) => (
-                <motion.div
-                  key={i}
-                  className="project-card active"
-                  data-filter-item
-                  data-category="react native"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
-                  whileHover={{ y: -8, scale: 1.03, transition: { duration: 0.3 } }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="project-content">
-                    <div className="project-title-row">
-                      <h3 className="project-title">{proj.title}</h3>
-                      <span className="project-subtitle">{proj.subtitle}</span>
-                    </div>
-                    <p className="project-description">{proj.description}</p>
-                    <div className="project-technologies">
-                      {proj.tags.map((tag, j) => (
-                        <span key={j} className="tech-badge">{tag}</span>
-                      ))}
-                    </div>
-                    <div className="project-actions">
-                      {proj.links.map((link, k) => (
-                        <a
-                          key={k}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-store-btn"
-                        >
-                          <ion-icon name={link.icon}></ion-icon>
-                          <span>{link.label}</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
+                <ProjectCard key={i} project={proj} index={i} />
               ))}
             </div>
           </section>
