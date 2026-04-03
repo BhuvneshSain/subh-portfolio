@@ -350,7 +350,15 @@ main {
 
 .avatar-box {
   background: var(--bg-gradient-onyx);
-  border-radius: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fad76e;
+  box-shadow: 0 0 0 4px rgba(250, 215, 110, 0.15);
+}
+
+.avatar-box img {
+  border-radius: 50%;
+  display: block;
 }
 
 .info-content .name {
@@ -1571,7 +1579,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { gap: 25px; }
 
-  .avatar-box { border-radius: 30px; }
+  .avatar-box { border-radius: 50%; }
 
   .avatar-box img { width: 120px; }
 

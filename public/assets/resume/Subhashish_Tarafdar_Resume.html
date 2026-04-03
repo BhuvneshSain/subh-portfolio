@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subhashish Tarafdar – Senior React Native Engineer | Mobile & Full-Stack</title>
+  <style>
+    @media print {
+      body { margin: 0; padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page { box-shadow: none; padding: 18px 28px 20px; }
+      a { color: inherit; text-decoration: none; }
+      .tag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 11px;
+      line-height: 1.48;
+      color: #1e293b;
+      background: #eef2f7;
+      padding: 20px 16px;
+    }
+    .page {
+      background: #fff;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 36px 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      border-radius: 8px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      border-left: 4px solid #2563eb;
+      padding-left: 14px;
+      margin-bottom: 10px;
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    .header .role {
+      font-size: 11.5px;
+      color: #2563eb;
+      font-weight: 600;
+      margin-top: 3px;
+      letter-spacing: 0.01em;
+    }
+    .header .stack {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+      margin-bottom: 12px;
+      font-size: 9.5px;
+      color: #475569;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 6px 12px;
+    }
+    .contact span { white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+    .contact a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .contact a:hover { text-decoration: underline; }
+
+    /* ── SECTION HEADING ── */
+    h2 {
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #2563eb;
+      margin: 12px 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(to right, #bfdbfe, transparent);
+      border-radius: 2px;
+    }
+
+    /* ── SUMMARY ── */
+    .summary {
+      font-size: 11px;
+      color: #334155;
+      line-height: 1.52;
+      text-align: justify;
+      background: #f8fafc;
+      border-left: 3px solid #bfdbfe;
+      padding: 6px 10px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* ── CORE IMPACT ── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px 16px;
+      list-style: none;
+    }
+    .impact-grid li {
+      font-size: 10.5px;
+      color: #334155;
+      line-height: 1.44;
+      padding-left: 12px;
+      position: relative;
+    }
+    .impact-grid li::before {
+      content: '▸';
+      color: #2563eb;
+      position: absolute;
+      left: 0;
+      font-size: 8px;
+      top: 1px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px 16px;
+    }
+    .skill-block h3 {
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #0f172a;
+      margin-bottom: 4px;
+      padding-bottom: 2px;
+      border-bottom: 1.5px solid #e2e8f0;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px 3px;
+    }
+    .tag {
+      font-size: 9.5px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 3px;
+      padding: 1.5px 6px;
+      white-space: nowrap;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .tag.green { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+    .tag.purple { background: #faf5ff; color: #7c3aed; border-color: #ddd6fe; }
+    .tag.orange { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+    .tag.slate { background: #f8fafc; color: #475569; border-color: #cbd5e1; }
+
+    /* ── EXPERIENCE ── */
+    .job { margin-bottom: 9px; }
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px 10px;
+    }
+    .job-title { font-weight: 700; font-size: 10.5px; color: #0f172a; }
+    .job-date {
+      font-size: 9px;
+      color: #fff;
+      background: #2563eb;
+      padding: 1px 7px;
+      border-radius: 20px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .company { font-size: 9.5px; color: #2563eb; margin: 1px 0 3px 0; font-weight: 600; }
+    .job ul { padding-left: 14px; margin-top: 3px; }
+    .job li {
+      margin-bottom: 3px;
+      color: #374151;
+      line-height: 1.44;
+      font-size: 10.5px;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 16px;
+    }
+    .project {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 5px 9px;
+    }
+    .project-name { font-weight: 700; font-size: 10px; color: #0f172a; }
+    .project-name a { color: #2563eb; text-decoration: none; }
+    .project-name a:hover { text-decoration: underline; }
+    .project-desc { font-size: 10px; color: #4b5563; margin-top: 3px; line-height: 1.42; }
+    .project-links { margin-top: 3px; display: flex; gap: 6px; }
+    .project-links a { font-size: 8.5px; color: #2563eb; text-decoration: none; font-weight: 500; }
+    .project-links a:hover { text-decoration: underline; }
+
+    /* ── EDUCATION ── */
+    .education-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px 10px;
+    }
+    .degree { font-weight: 700; font-size: 10.5px; color: #0f172a; }
+    .university { font-size: 10px; color: #475569; }
+    .edu-date { font-size: 9.5px; color: #64748b; }
+
+    /* ── LANGUAGES ── */
+    .lang-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lang-pill {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 10px;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    /* ── DIVIDER ── */
+    .job + .job { border-top: 1px dashed #e2e8f0; padding-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <div class="header">
+      <h1>Subhashish Tarafdar</h1>
+      <div class="role">Senior React Native Engineer · Mobile & Full-Stack</div>
+      <div class="stack">React Native · Flutter · React · Next.js · Node.js · iOS · Android</div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact">
+      <span>📍 India (Remote)</span>
+      <span>📞 +91 8107951997</span>
+      <span>✉️ <a href="mailto:iamanshu97@gmail.com">iamanshu97@gmail.com</a></span>
+      <span>🔗 <a href="https://www.linkedin.com/in/subhashish-tarafdar-1692331a4/">LinkedIn</a></span>
+      <span>🔗 <a href="https://github.com/suburaj97">GitHub</a></span>
+      <span>🔗 <a href="https://subhashish.netlify.app/">Portfolio</a></span>
+    </div>
+
+    <!-- SUMMARY -->
+    <h2>Professional Summary</h2>
+    <p class="summary">
+      Senior Software Engineer with 6+ years delivering production-grade mobile and full-stack applications. Shipped 10+ apps across iOS and Android using React Native and Flutter; built web backends with Next.js and Node.js. Experienced across the full mobile lifecycle — from architecture and state management to CI/CD automation (EAS, GitHub Actions, CodePush), crash monitoring (Sentry, Crashlytics), real-time communication (WebSockets/STOMP), maps and geolocation, social authentication, push notifications, and App Store / Play Store release management.
+    </p>
+
+    <!-- CORE IMPACT -->
+    <h2>Core Impact Areas</h2>
+    <ul class="impact-grid">
+      <li>Shipped 10+ apps on iOS & Android</li>
+      <li>Maps, geolocation & GPS tracking features</li>
+      <li>Social login (Google, Apple, Facebook / OAuth 2.0)</li>
+      <li>Real-time via WebSockets & STOMP</li>
+      <li>Push notifications (FCM, APNs, Expo)</li>
+      <li>Biometric auth (Face ID, Touch ID)</li>
+      <li>Offline-first architecture (SQLite + sync)</li>
+      <li>CI/CD with EAS, GitHub Actions, CodePush</li>
+      <li>Sentry crash monitoring & Firebase Analytics</li>
+      <li>Redux Toolkit, Zustand & React Query</li>
+      <li>Payment, AdMob & in-app purchases</li>
+      <li>App Store Connect & Play Console releases</li>
+    </ul>
+
+    <!-- TECHNICAL SKILLS -->
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-block">
+        <h3>Mobile Development</h3>
+        <div class="tags">
+          <span class="tag">React Native</span>
+          <span class="tag">Flutter</span>
+          <span class="tag">Expo SDK</span>
+          <span class="tag">iOS (Swift)</span>
+          <span class="tag">Android</span>
+          <span class="tag">Hermes Engine</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Navigation & Routing</h3>
+        <div class="tags">
+          <span class="tag">React Navigation</span>
+          <span class="tag">Expo Router</span>
+          <span class="tag">Deep Linking</span>
+          <span class="tag">Universal Links</span>
+          <span class="tag">App Links</span>
+          <span class="tag">URL Schemes</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>State Management</h3>
+        <div class="tags">
+          <span class="tag">Redux Toolkit</span>
+          <span class="tag">Zustand</span>
+          <span class="tag">React Query</span>
+          <span class="tag">TanStack Query</span>
+          <span class="tag">Context API</span>
+          <span class="tag">MobX</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Maps & Location</h3>
+        <div class="tags">
+          <span class="tag">React Native Maps</span>
+          <span class="tag">Google Maps SDK</span>
+          <span class="tag">Geolocation API</span>
+          <span class="tag">Background Location</span>
+          <span class="tag">GPS Tracking</span>
+          <span class="tag">Geofencing</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Auth & Social Login</h3>
+        <div class="tags">
+          <span class="tag">Google Sign-In</span>
+          <span class="tag">Apple Sign-In</span>
+          <span class="tag">Facebook Login</span>
+          <span class="tag">OAuth 2.0 / JWT</span>
+          <span class="tag">Face ID / Touch ID</span>
+          <span class="tag">Biometric Auth</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Firebase</h3>
+        <div class="tags">
+          <span class="tag">Firebase Auth</span>
+          <span class="tag">Firestore</span>
+          <span class="tag">FCM</span>
+          <span class="tag">Firebase Storage</span>
+          <span class="tag">Analytics</span>
+          <span class="tag">Crashlytics</span>
+          <span class="tag">Remote Config</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Push Notifications</h3>
+        <div class="tags">
+          <span class="tag">FCM (Android)</span>
+          <span class="tag">APNs (iOS)</span>
+          <span class="tag">Expo Notifications</span>
+          <span class="tag">Local Notifications</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Animations & UI</h3>
+        <div class="tags">
+          <span class="tag">Reanimated 2/3</span>
+          <span class="tag">Lottie</span>
+          <span class="tag">Gesture Handler</span>
+          <span class="tag">Animated API</span>
+          <span class="tag">Haptics</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Real-Time & Security</h3>
+        <div class="tags">
+          <span class="tag">WebSockets</span>
+          <span class="tag">STOMP / StompJS</span>
+          <span class="tag">Data Encryption</span>
+          <span class="tag">Secure Storage</span>
+          <span class="tag">Encrypted SQLite</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>DevOps & Release</h3>
+        <div class="tags">
+          <span class="tag">EAS CI/CD</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">CodePush OTA</span>
+          <span class="tag">App Store Connect</span>
+          <span class="tag">Play Console</span>
+          <span class="tag">Vercel</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Monitoring & Testing</h3>
+        <div class="tags">
+          <span class="tag">Sentry</span>
+          <span class="tag">Firebase Crashlytics</span>
+          <span class="tag">Jest</span>
+          <span class="tag">RNTL</span>
+          <span class="tag">Flipper</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Frontend</h3>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">GraphQL</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Backend</h3>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Prisma</span>
+          <span class="tag">TypeORM</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Databases</h3>
+        <div class="tags">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Firebase Firestore</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>AI & Dev Tools</h3>
+        <div class="tags">
+          <span class="tag">Cursor</span>
+          <span class="tag">Claude Code</span>
+          <span class="tag">GitHub Copilot</span>
+          <span class="tag">Stitch</span>
+          <span class="tag">Antigravity</span>
+          <span class="tag">Android Studio</span>
+          <span class="tag">Xcode</span>
+          <span class="tag">VS Code</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>MCP Integrations</h3>
+        <div class="tags">
+          <span class="tag purple">GitHub MCP</span>
+          <span class="tag purple">Expo MCP</span>
+          <span class="tag purple">Supabase MCP</span>
+          <span class="tag purple">Jira MCP</span>
+          <span class="tag purple">MongoDB MCP</span>
+          <span class="tag purple">Firebase MCP</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Device Features</h3>
+        <div class="tags">
+          <span class="tag">Camera / Video</span>
+          <span class="tag">QR Scanning</span>
+          <span class="tag">ML Kit (Face Detection)</span>
+          <span class="tag">File System</span>
+          <span class="tag">Document Picker</span>
+          <span class="tag">Background Tasks</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Integrations</h3>
+        <div class="tags">
+          <span class="tag">Payment Gateway</span>
+          <span class="tag">AdMob</span>
+          <span class="tag">In-App Purchases</span>
+          <span class="tag">Social Sharing</span>
+          <span class="tag">i18n / l10n</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EXPERIENCE -->
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Senior Software Engineer – Mobile & Full-Stack</span>
+        <span class="job-date">Jan 2024 – Present</span>
+      </div>
+      <div class="company">Bacancy Technology · Remote</div>
+      <ul>
+        <li>Led full-stack delivery for enterprise products across iOS/Android and web backends (Next.js/Node.js) deployed on Vercel; managed App Store Connect and Play Console release pipelines end-to-end.</li>
+        <li>Integrated Google Maps, geolocation, and GPS tracking features enabling real-time location workflows and geofencing for field-facing mobile users.</li>
+        <li>Implemented Social Login (Google Sign-In, Apple Sign-In) and biometric authentication (Face ID/Touch ID) to streamline and secure user onboarding flows.</li>
+        <li>Delivered real-time features using WebSockets/STOMP; set up push notifications via FCM/APNs reducing manual refresh dependency.</li>
+        <li>Adopted Redux Toolkit and React Query for predictable state management and server-state caching, improving UI consistency and network efficiency.</li>
+        <li>Implemented Sentry crash monitoring and Firebase Analytics/Crashlytics, cutting mean-time-to-detect production issues significantly.</li>
+        <li>Shipped high-usage features (QR scanning, digital signatures, social sharing, media capture, React Native Reanimated UI) in stable store releases.</li>
+        <li>Accelerated release throughput by automating CI/CD with EAS, GitHub Actions, and CodePush OTA across dev/staging/production environments.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Software Engineer – Mobile & Full-Stack</span>
+        <span class="job-date">Jan 2022 – Jan 2024</span>
+      </div>
+      <div class="company">Bacancy Software LLP · Remote</div>
+      <ul>
+        <li>Contributed to delivery of 10+ production applications using React Native, React, Next.js, and Node.js across consumer and enterprise use cases.</li>
+        <li>Built map and geolocation modules using React Native Maps and the Geolocation API for location-aware features in multiple apps.</li>
+        <li>Integrated Firebase Auth with OAuth 2.0 / JWT flows (Google, Apple, Facebook login) alongside Firebase FCM for reliable push notifications on iOS and Android.</li>
+        <li>Built offline-first data flows with SQLite and background sync, maintaining app continuity in low-connectivity scenarios.</li>
+        <li>Implemented monetization and growth features (AdMob, in-app purchases) and deep linking / Universal Links for cross-platform navigation continuity.</li>
+        <li>Standardized Zustand + React Query patterns and secure local storage across multiple projects, reducing repeated implementation effort per engagement.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Junior Software Engineer</span>
+        <span class="job-date">Jan 2020 – Jan 2022</span>
+      </div>
+      <div class="company">ISOL Systems · Bikaner, India</div>
+      <ul>
+        <li>Delivered cross-platform mobile features in React Native with React Navigation across multiple client projects from development to production rollout.</li>
+        <li>Built and integrated Swift native modules to unlock platform-specific capabilities beyond standard React Native libraries.</li>
+        <li>Implemented ML Kit-powered face detection and biometric authentication (Face ID/Touch ID) expanding product capabilities beyond baseline app behavior.</li>
+        <li>Integrated AdMob, third-party APIs, and Firebase services (Auth, Firestore) to support monetization and connected feature delivery in shipping builds.</li>
+        <li>Developed encrypted local database workflows (SQLite) with Lottie animations and Haptics to improve UX and data safety on-device.</li>
+      </ul>
+    </div>
+
+    <!-- SELECTED PROJECTS -->
+    <h2>Selected Projects</h2>
+    <div class="projects-grid">
+      <div class="project">
+        <div class="project-name">Project Atlas</div>
+        <p class="project-desc">Mobile platform enabling political engagement through campaigns and real-time location-aware updates using React Native Maps and WebSockets.</p>
+        <div class="project-links"><a href="https://apps.apple.com/us/app/sandlines/id6469634537">App Store ↗</a></div>
+      </div>
+      <div class="project">
+        <div class="project-name">Project Aurora</div>
+        <p class="project-desc">Consumer lifestyle app enabling users to participate in marketing campaigns and brand activities with deep linking and push notification flows.</p>
+        <div class="project-links">
+          <a href="https://apps.apple.com/us/app/ripple-street/id1623388148">App Store ↗</a>
+          <a href="https://play.google.com/store/apps/details?id=com.ripplestreetfun">Play Store ↗</a>
+        </div>
+      </div>
+      <div class="project">
+        <div class="project-name">Project Keystone</div>
+        <p class="project-desc">Business app for members: lead management, warranties, service calls, installation guides, and companion WiFi adapter setup with QR scanning.</p>
+        <div class="project-links">
+          <a href="https://apps.apple.com/us/app/procard/id1110311645">App Store ↗</a>
+          <a href="https://play.google.com/store/apps/details?id=com.org.noritz">Play Store ↗</a>
+        </div>
+      </div>
+      <div class="project">
+        <div class="project-name">Project Helix</div>
+        <p class="project-desc">IoT mobile app enabling real-time monitoring and remote control of smart water heating systems with geolocation and background tasks.</p>
+        <div class="project-links">
+          <a href="https://apps.apple.com/us/app/noritz-connect/id1227949334">App Store ↗</a>
+          <a href="https://play.google.com/store/apps/details?id=com.noritz.iot&hl=en_IN">Play Store ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <h2>Education</h2>
+    <div class="education-row">
+      <div>
+        <span class="degree">M.Sc. Computer Science</span><br/>
+        <span class="university">Maharaja Ganga Singh University, Bikaner, Rajasthan</span>
+      </div>
+    </div>
+
+    <!-- LANGUAGES -->
+    <h2>Languages</h2>
+    <div class="lang-row">
+      <span class="lang-pill">English — Professional</span>
+      <span class="lang-pill">Hindi — Professional</span>
+    </div>
+
+  </div>
+</body>
+</html>

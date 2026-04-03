@@ -1,17 +1,6 @@
 /**
  * React Portfolio Application
- * 
- * This is the main component for Subhashish Tarafdar's portfolio website.
- * Features include:
- * - Single-page application with smooth navigation
- * - Responsive design with mobile-first approach
- * - Interactive animations using Framer Motion
- * - Five main sections: About, Projects, Skills, Resume, Contact
- * - Dynamic skill icons with unified golden color scheme
- * - Netlify deployment ready with proper meta tags
- * 
- * @author Bhuvnesh Sain
- * @version 2.0
+ * Subhashish Tarafdar – Senior React Native Engineer | Mobile & Full-Stack
  */
 
 import './App.css';
@@ -19,132 +8,258 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 function App() {
-  // State management for active page navigation
   const [activePage, setActivePage] = useState('about');
-  // State management for sidebar toggle (mobile)
   const [sidebarActive, setSidebarActive] = useState(false);
-  /**
-   * Handles page navigation and scroll behavior
-   * @param {string} page - The target page identifier
-   */
+  const [resumeZoom, setResumeZoom] = useState(1);
+  const ZOOM_STEP = 0.1;
+  const ZOOM_MIN = 0.5;
+  const ZOOM_MAX = 2;
+
   const handlePageChange = (page) => {
     setActivePage(page);
-    window.scrollTo(0, 0); // Smooth scroll to top on page change
+    window.scrollTo(0, 0);
   };
 
-  /**
-   * Handles sidebar toggle for mobile devices
-   */
   const handleSidebarToggle = () => {
     setSidebarActive(!sidebarActive);
-  };/**
-   * Effect hook for loading external scripts and resources
-   * Handles dynamic loading of:
-   * - Ionicons for UI icons
-   * Note: Removed script.js loading to prevent conflicts with React navigation
-   */
+  };
+
   useEffect(() => {
     let ioniconsESM, ioniconsNoModule;
-
-    // Note: CSS is now loaded directly via index.css import - no dynamic loading needed
-
-    // Load Ionicons only if not already loaded
     if (!document.querySelector('script[src*="ionicons.esm.js"]')) {
       ioniconsESM = document.createElement('script');
       ioniconsESM.type = 'module';
       ioniconsESM.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js';
       document.head.appendChild(ioniconsESM);
     }
-
     if (!document.querySelector('script[src*="ionicons.js"]')) {
       ioniconsNoModule = document.createElement('script');
       ioniconsNoModule.setAttribute('nomodule', '');
       ioniconsNoModule.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js';
       document.head.appendChild(ioniconsNoModule);
-    }    // Cleanup function for Ionicons if needed
+    }
     return () => {
-      if (ioniconsESM && ioniconsESM.parentNode) {
-        document.head.removeChild(ioniconsESM);
-      }
-      if (ioniconsNoModule && ioniconsNoModule.parentNode) {
-        document.head.removeChild(ioniconsNoModule);
-      }
-    };}, []);
+      if (ioniconsESM && ioniconsESM.parentNode) document.head.removeChild(ioniconsESM);
+      if (ioniconsNoModule && ioniconsNoModule.parentNode) document.head.removeChild(ioniconsNoModule);
+    };
+  }, []);
 
-  /**
-   * Animation variants for Framer Motion
-   * These define the entrance animations for different components
-   */
-  
-  // Sidebar animation: slides in from left
   const sidebarVariants = {
     hidden: { x: -300, opacity: 0 },
-    visible: { 
-      x: 0, 
-      opacity: 1,
-      transition: { 
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+    visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } }
   };
 
-  // Main content animation: slides in from right with delay
   const mainContentVariants = {
     hidden: { x: 100, opacity: 0 },
-    visible: { 
-      x: 0, 
-      opacity: 1,
-      transition: { 
-        duration: 0.8,
-        ease: "easeOut",
-        delay: 0.2
-      }
-    }  };
-  
-  // Page transition animation: fade and slide up effect
+    visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut', delay: 0.2 } }
+  };
+
   const pageVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      transition: {
-        duration: 0.3
-      }
-    }  };
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
+  };
 
-  /**
-   * Main JSX Return - Portfolio Layout
-   * Structure:
-   * - Main container with entrance animation
-   * - Sidebar with personal info and navigation
-   * - Main content area with dynamic page rendering
-   * - Mobile-responsive navigation bar
-   */
+  const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay }
+  });
+
+  const stats = [
+    { value: '6+', label: 'Years Experience' },
+    { value: '10+', label: 'Apps Shipped' },
+    { value: 'iOS & Android', label: 'Platforms' },
+    { value: '3', label: 'Companies' },
+  ];
+
+  const impactAreas = [
+    'Shipped 10+ apps on iOS & Android',
+    'Maps, geolocation & GPS tracking',
+    'Social login (Google, Apple, Facebook)',
+    'Real-time via WebSockets & STOMP',
+    'Push notifications (FCM, APNs, OneSignal)',
+    'Biometric auth (Face ID, Touch ID)',
+    'Offline-first (SQLite + sync)',
+    'CI/CD: EAS, GitHub Actions, CodePush',
+    'Sentry crash monitoring & Firebase Analytics',
+    'Redux Toolkit, Zustand & React Query',
+    'Payment, AdMob & in-app purchases',
+    'App Store Connect & Play Console releases',
+  ];
+
+  const skillCategories = [
+    {
+      title: 'Mobile Development',
+      tags: ['React Native', 'Flutter', 'Expo SDK', 'iOS (Swift)', 'Android', 'Hermes Engine'],
+    },
+    {
+      title: 'Navigation & Routing',
+      tags: ['React Navigation', 'Expo Router', 'Deep Linking', 'Universal Links', 'App Links', 'URL Schemes'],
+    },
+    {
+      title: 'State Management',
+      tags: ['Redux Toolkit', 'Zustand', 'React Query', 'TanStack Query', 'Context API', 'MobX'],
+    },
+    {
+      title: 'Maps & Location',
+      tags: ['React Native Maps', 'Google Maps SDK', 'Geolocation API', 'Background Location', 'GPS Tracking', 'Geofencing'],
+    },
+    {
+      title: 'Auth & Social Login',
+      tags: ['Google Sign-In', 'Apple Sign-In', 'Facebook Login', 'OAuth 2.0 / JWT', 'Face ID / Touch ID', 'Biometric Auth'],
+    },
+    {
+      title: 'Firebase',
+      tags: ['Firebase Auth', 'Firestore', 'FCM', 'Firebase Storage', 'Analytics', 'Crashlytics', 'Remote Config'],
+    },
+    {
+      title: 'Push Notifications',
+      tags: ['FCM (Android)', 'APNs (iOS)', 'Expo Notifications', 'OneSignal', 'Local Notifications'],
+    },
+    {
+      title: 'Animations & UI',
+      tags: ['Reanimated 2/3', 'Lottie', 'Gesture Handler', 'Animated API', 'Haptics'],
+    },
+    {
+      title: 'Real-Time & Security',
+      tags: ['WebSockets', 'STOMP / StompJS', 'Data Encryption', 'Secure Storage', 'Encrypted SQLite'],
+    },
+    {
+      title: 'DevOps & Release',
+      tags: ['EAS CI/CD', 'GitHub Actions', 'CodePush OTA', 'App Store Connect', 'Play Console', 'Vercel'],
+    },
+    {
+      title: 'Monitoring & Testing',
+      tags: ['Sentry', 'Firebase Crashlytics', 'Jest', 'RNTL', 'Flipper'],
+    },
+    {
+      title: 'Frontend',
+      tags: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'GraphQL'],
+    },
+    {
+      title: 'Backend',
+      tags: ['Node.js', 'Express.js', 'REST API', 'Prisma', 'TypeORM'],
+    },
+    {
+      title: 'Databases',
+      tags: ['PostgreSQL', 'MongoDB', 'SQLite', 'Supabase', 'Firebase Firestore'],
+    },
+    {
+      title: 'AI & Dev Tools',
+      tags: ['Cursor', 'Claude Code', 'GitHub Copilot', 'Xcode', 'Android Studio', 'VS Code'],
+    },
+    {
+      title: 'Device Features',
+      tags: ['Camera / Video', 'QR Scanning', 'ML Kit (Face Detection)', 'File System', 'Document Picker', 'Background Tasks'],
+    },
+    {
+      title: 'Integrations',
+      tags: ['Payment Gateway', 'AdMob', 'In-App Purchases', 'Social Sharing', 'i18n / l10n'],
+    },
+    {
+      title: 'MCP Integrations',
+      tags: ['GitHub MCP', 'Stitch MCP', 'Supabase MCP'],
+      accent: true,
+    },
+  ];
+
+  const projects = [
+    {
+      title: 'Sandlines',
+      subtitle: 'Project Atlas',
+      description: 'Mobile platform enabling political engagement through campaigns and real-time location-aware updates using React Native Maps and WebSockets.',
+      tags: ['React Native', 'TypeScript', 'Firebase', 'WebSockets', 'Maps'],
+      links: [{ label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/sandlines/id6469634537' }],
+    },
+    {
+      title: 'RippleStreet',
+      subtitle: 'Project Aurora',
+      description: 'Consumer lifestyle app enabling users to participate in marketing campaigns and brand activities with deep linking and push notification flows.',
+      tags: ['React Native', 'AWS Amplify', 'Deep Linking', 'Push Notifications'],
+      links: [
+        { label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/ripple-street/id1623388148' },
+        { label: 'Play Store', icon: 'logo-google-playstore', url: 'https://play.google.com/store/apps/details?id=com.ripplestreetfun' },
+      ],
+    },
+    {
+      title: 'Noritz Procard',
+      subtitle: 'Project Keystone',
+      description: 'Business app for members: lead management, warranties, service calls, installation guides, and companion WiFi adapter setup with QR scanning.',
+      tags: ['React Native', 'SQLite', 'Encryption', 'Offline-first', 'QR Scan'],
+      links: [
+        { label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/procard/id1110311645' },
+        { label: 'Play Store', icon: 'logo-google-playstore', url: 'https://play.google.com/store/apps/details?id=com.org.noritz' },
+      ],
+    },
+    {
+      title: 'Noritz Connect',
+      subtitle: 'Project Helix',
+      description: 'IoT mobile app enabling real-time monitoring and remote control of smart water heating systems with geolocation and background tasks.',
+      tags: ['React Native', 'IoT', 'Geolocation', 'Background Tasks', 'Real-time'],
+      links: [
+        { label: 'App Store', icon: 'logo-apple', url: 'https://apps.apple.com/us/app/noritz-connect/id1227949334' },
+        { label: 'Play Store', icon: 'logo-google-playstore', url: 'https://play.google.com/store/apps/details?id=com.noritz.iot&hl=en_IN' },
+      ],
+    },
+    {
+      title: 'Chromaflo',
+      subtitle: 'Project Spectrum',
+      description: 'Industrial mobile tool for color formulation and pigment selection with offline-first SQLite sync and camera-based color capture.',
+      tags: ['React Native', 'Camera', 'SQLite', 'Offline-first', 'Flutter'],
+      links: [{ label: 'Website', icon: 'globe-outline', url: 'https://bluepony.com/pages/chromaflo' }],
+    },
+  ];
+
+  const experience = [
+    {
+      role: 'Senior Software Engineer – Mobile & Full-Stack',
+      company: 'Bacancy Technology · Remote',
+      period: 'Jan 2024 – Present',
+      bullets: [
+        'Led full-stack delivery for enterprise products across iOS/Android and web backends (Next.js/Node.js) deployed on Vercel; managed App Store Connect and Play Console pipelines end-to-end.',
+        'Integrated Google Maps, geolocation, and GPS tracking enabling real-time location workflows and geofencing for field-facing mobile users.',
+        'Implemented Social Login (Google, Apple) and biometric auth (Face ID/Touch ID) to streamline and secure user onboarding flows.',
+        'Delivered real-time features using WebSockets/STOMP; set up push notifications via FCM/APNs and OneSignal.',
+        'Accelerated releases by automating CI/CD with EAS, GitHub Actions, and CodePush OTA across dev/staging/production environments.',
+      ],
+    },
+    {
+      role: 'Software Engineer – Mobile & Full-Stack',
+      company: 'Bacancy Software LLP · Remote',
+      period: 'Jan 2022 – Jan 2024',
+      bullets: [
+        'Contributed to delivery of 10+ production apps using React Native, React, Next.js, and Node.js.',
+        'Built map and geolocation modules using React Native Maps and the Geolocation API for location-aware features.',
+        'Integrated Firebase Auth with OAuth 2.0 / JWT flows (Google, Apple, Facebook) and Firebase FCM for push notifications.',
+        'Built offline-first data flows with SQLite and background sync for low-connectivity scenarios.',
+        'Implemented AdMob, in-app purchases, and deep linking / Universal Links for monetization and navigation continuity.',
+      ],
+    },
+    {
+      role: 'Junior Software Engineer',
+      company: 'ISOL Systems · Bikaner, India',
+      period: 'Jan 2020 – Jan 2022',
+      bullets: [
+        'Delivered cross-platform mobile features in React Native with React Navigation across multiple client projects.',
+        'Built native Swift modules to unlock platform-specific capabilities beyond standard React Native libraries.',
+        'Implemented ML Kit-powered face detection and biometric authentication (Face ID/Touch ID).',
+        'Integrated AdMob, Firebase services (Auth, Firestore), and encrypted SQLite workflows with Lottie animations.',
+      ],
+    },
+  ];
+
   return (
     <motion.main
       initial="hidden"
       animate="visible"
       variants={{
         hidden: { opacity: 0 },
-        visible: { 
-          opacity: 1,
-          transition: { 
-            staggerChildren: 0.1,
-            delayChildren: 0.3 
-          }
-        }
+        visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.3 } }
       }}
-    >      {/* Sidebar */}
-      <motion.aside 
+    >
+      {/* ── SIDEBAR ── */}
+      <motion.aside
         className={`sidebar ${sidebarActive ? 'active' : ''}`}
         data-sidebar
         variants={sidebarVariants}
@@ -152,24 +267,27 @@ function App() {
         animate="visible"
       >
         <div className="sidebar-info">
-          <motion.figure 
+          <motion.figure
             className="avatar-box"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
           >
-            <img src="./assets/images/my-avatar.png" alt="Richard hanrick" width="80" />
+            <img src="./assets/images/my-avatar.jpeg" alt="Subhashish Tarafdar" width="80" />
           </motion.figure>
 
-          <motion.div 
+          <motion.div
             className="info-content"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-          >            <h1 className="name" title="Subhashish Tarafdar">Subhashish <br/>Tarafdar</h1>
-            <p className="title">React Native Developer</p>
-          </motion.div>          <motion.button 
-            className="info_more-btn" 
+          >
+            <h1 className="name" title="Subhashish Tarafdar">Subhashish<br />Tarafdar</h1>
+            <p className="title">Senior Software Engineer</p>
+          </motion.div>
+
+          <motion.button
+            className="info_more-btn"
             data-sidebar-btn
             onClick={handleSidebarToggle}
             initial={{ opacity: 0 }}
@@ -185,1142 +303,409 @@ function App() {
 
         <div className="sidebar-info_more">
           <div className="separator"></div>
-
           <ul className="contacts-list">
             <li className="contact-item">
-              <div className="icon-box">
-                <ion-icon name="mail-outline"></ion-icon>
-              </div>              <div className="contact-info">
+              <div className="icon-box"><ion-icon name="mail-outline"></ion-icon></div>
+              <div className="contact-info">
                 <p className="contact-title">Email</p>
-                <a href="mailto:anshfitness143@gmail.com" className="contact-link">anshfitness143@gmail.com</a>
+                <a href="mailto:iamanshu97@gmail.com" className="contact-link">iamanshu97@gmail.com</a>
               </div>
             </li>
-
             <li className="contact-item">
-              <div className="icon-box">
-                <ion-icon name="phone-portrait-outline"></ion-icon>
-              </div>              <div className="contact-info">
+              <div className="icon-box"><ion-icon name="phone-portrait-outline"></ion-icon></div>
+              <div className="contact-info">
                 <p className="contact-title">Phone</p>
                 <a href="tel:+918107951997" className="contact-link">+91 81079 51997</a>
               </div>
             </li>
-
             <li className="contact-item">
-              <div className="icon-box">
-                <ion-icon name="logo-linkedin"></ion-icon>
-              </div>
+              <div className="icon-box"><ion-icon name="logo-linkedin"></ion-icon></div>
               <div className="contact-info">
                 <p className="contact-title">LinkedIn</p>
-                <a href="https://in.linkedin.com/in/subhashish-tarafdar-1692331a4" className="contact-link" target="_blank" rel="noopener noreferrer">Subhashish Tarafdar</a>
+                <a href="https://www.linkedin.com/in/subhashish-tarafdar-1692331a4/" className="contact-link" target="_blank" rel="noopener noreferrer">Subhashish Tarafdar</a>
               </div>
             </li>
-
             <li className="contact-item">
-              <div className="icon-box">
-                <ion-icon name="location-outline"></ion-icon>
+              <div className="icon-box"><ion-icon name="logo-github"></ion-icon></div>
+              <div className="contact-info">
+                <p className="contact-title">GitHub</p>
+                <a href="https://github.com/suburaj97" className="contact-link" target="_blank" rel="noopener noreferrer">suburaj97</a>
               </div>
+            </li>
+            <li className="contact-item">
+              <div className="icon-box"><ion-icon name="location-outline"></ion-icon></div>
               <div className="contact-info">
                 <p className="contact-title">Location</p>
-                <address>Bikaner, Rajasthan</address>
+                <address>Bikaner (Rajasthan)</address>
               </div>
             </li>
           </ul>
 
-          <div className="separator"></div>          <ul className="social-list">
+          <div className="separator"></div>
+          <ul className="social-list">
             <li className="social-item">
-              <a href="https://in.linkedin.com/in/subhashish-tarafdar-1692331a4" className="social-link" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/subhashish-tarafdar-1692331a4/" className="social-link" target="_blank" rel="noopener noreferrer">
                 <ion-icon name="logo-linkedin"></ion-icon>
               </a>
             </li>
             <li className="social-item">
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a href="#" className="social-link" onClick={(e) => e.preventDefault()}>
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
-            </li>
-            <li className="social-item">
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a href="#" className="social-link" onClick={(e) => e.preventDefault()}>
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
-            <li className="social-item">
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a href="#" className="social-link" onClick={(e) => e.preventDefault()}>
-                <ion-icon name="logo-instagram"></ion-icon>
+              <a href="https://github.com/suburaj97" className="social-link" target="_blank" rel="noopener noreferrer">
+                <ion-icon name="logo-github"></ion-icon>
               </a>
             </li>
           </ul>
         </div>
       </motion.aside>
 
-      {/* Main Content */}
-      <motion.div 
-        className="main-content"
-        variants={mainContentVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      {/* ── MAIN CONTENT ── */}
+      <motion.div className="main-content" variants={mainContentVariants} initial="hidden" animate="visible">
+
         {/* Navigation */}
-        <motion.nav 
+        <motion.nav
           className="navbar"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-        >          <motion.ul 
+        >
+          <motion.ul
             className="navbar-list"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.1,
-                  delayChildren: 0.9
-                }
-              }
-            }}
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.9 } } }}
             initial="hidden"
             animate="visible"
           >
-            <motion.li 
-              className="navbar-item"
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <motion.button 
-                className={`navbar-link ${activePage === 'about' ? 'active' : ''}`}
-                data-nav-link="about"
-                onClick={() => handlePageChange('about')}
-                whileHover={{ scale: 1.05, color: "#fad76e" }}
-                whileTap={{ scale: 0.95 }}
+            {['about', 'projects', 'skills', 'resume', 'contact'].map((page) => (
+              <motion.li
+                key={page}
+                className="navbar-item"
+                variants={{ hidden: { opacity: 0, y: -10 }, visible: { opacity: 1, y: 0 } }}
               >
-                About
-              </motion.button>
-            </motion.li>
-   
-            <motion.li 
-              className="navbar-item"
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <motion.button 
-                className={`navbar-link ${activePage === 'projects' ? 'active' : ''}`}
-                data-nav-link="projects"
-                onClick={() => handlePageChange('projects')}
-                whileHover={{ scale: 1.05, color: "#fad76e" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Projects
-              </motion.button>
-            </motion.li>
-
-            <motion.li 
-              className="navbar-item"
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <motion.button 
-                className={`navbar-link ${activePage === 'skills' ? 'active' : ''}`}
-                data-nav-link="skills"
-                onClick={() => handlePageChange('skills')}
-                whileHover={{ scale: 1.05, color: "#fad76e" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Skills
-              </motion.button>
-            </motion.li>
-
-            <motion.li 
-              className="navbar-item"
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <motion.button 
-                className={`navbar-link ${activePage === 'resume' ? 'active' : ''}`}
-                data-nav-link="resume"
-                onClick={() => handlePageChange('resume')}
-                whileHover={{ scale: 1.05, color: "#fad76e" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Resume
-              </motion.button>
-            </motion.li>
-
-            <motion.li 
-              className="navbar-item"
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <motion.button 
-                className={`navbar-link ${activePage === 'contact' ? 'active' : ''}`}
-                data-nav-link="contact"
-                onClick={() => handlePageChange('contact')}
-                whileHover={{ scale: 1.05, color: "#fad76e" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Contact
-              </motion.button>
-            </motion.li>
+                <motion.button
+                  className={`navbar-link ${activePage === page ? 'active' : ''}`}
+                  onClick={() => handlePageChange(page)}
+                  whileHover={{ scale: 1.05, color: '#fad76e' }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {page.charAt(0).toUpperCase() + page.slice(1)}
+                </motion.button>
+              </motion.li>
+            ))}
           </motion.ul>
-        </motion.nav>        {/* About Section */}
-        <motion.article 
+        </motion.nav>
+
+        {/* ── ABOUT ── */}
+        <motion.article
           className={`about ${activePage === 'about' ? 'active' : ''}`}
           data-page="about"
           style={{ display: activePage === 'about' ? 'block' : 'none' }}
           variants={pageVariants}
           initial="hidden"
-          animate={activePage === 'about' ? "visible" : "hidden"}
+          animate={activePage === 'about' ? 'visible' : 'hidden'}
         >
-          <motion.header
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <motion.header {...fadeUp(0.2)}>
             <h2 className="h2 article-title">About me</h2>
-          </motion.header>          <motion.section 
-            className="about-text"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+          </motion.header>
+
+          {/* Stats Bar */}
+          <motion.div className="stats-bar" {...fadeUp(0.3)}>
+            {stats.map((s, i) => (
+              <div className="stat-item" key={i}>
+                <span className="stat-value">{s.value}</span>
+                <span className="stat-label">{s.label}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.section className="about-text" {...fadeUp(0.4)}>
             <p>
-              Over 6+ years in the IT industry with expertise in mobile and web development. Proven ability to manage projects from planning through production in cross-functional teams. Proficient in React Native, Flutter, and Node.js, with strong experience using AWS Amplify for scalable backend services.
+              Senior Software Engineer with <strong>6+ years</strong> delivering production-grade mobile and full-stack applications. Shipped <strong>10+ apps</strong> across iOS and Android using React Native and Flutter; built web backends with Next.js and Node.js.
             </p>
             <p>
-              Skilled in Firebase (Firestore, Authentication, Cloud Functions) and integrated social logins (Google, Facebook, Apple). Developed and consumed RESTful APIs, implemented push notifications and monetization strategies with Google AdMob and Stripe. Demonstrated architect-level design and native iOS development with Swift, alongside unit testing to ensure application stability. Excellent communicator and team player with a robust problem-solving foundation.
+              Experienced across the full mobile lifecycle — from architecture and state management to CI/CD automation (EAS, GitHub Actions, CodePush), crash monitoring (Sentry, Crashlytics), real-time communication (WebSockets/STOMP), maps and geolocation, social authentication, push notifications, and App Store / Play Store release management.
             </p>
           </motion.section>
 
-          {/* What I'm Doing Section */}
-          <motion.section 
-            className="service"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <h3 className="h3 service-title">What I'm Doing</h3>
+          {/* Core Impact Areas */}
+          <motion.section className="impact-section" {...fadeUp(0.5)}>
+            <h3 className="h3 service-title">Core Impact Areas</h3>
+            <div className="impact-grid">
+              {impactAreas.map((item, i) => (
+                <motion.div
+                  key={i}
+                  className="impact-pill"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.6 + i * 0.05 }}
+                  whileHover={{ y: -3, scale: 1.02 }}
+                >
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span>{item}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
 
-            <ul className="service-list">              <motion.li 
-                className="service-item"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="service-icon-box">
-                  <img src="./assets/images/icon-dev.svg" alt="Mobile Apps icon" width="40" />
-                </div>
-                <div className="service-content-box">
-                  <h4 className="h4 service-item-title">Mobile Apps</h4>
-                  <p className="service-item-text">
-                    Professional development of cross-platform applications using React Native and Flutter for iOS and Android platforms.
-                  </p>
-                </div>
-              </motion.li>              <motion.li 
-                className="service-item"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="service-icon-box">
-                  <img src="./assets/images/icon-design.svg" alt="Web Development icon" width="40" />
-                </div>
-                <div className="service-content-box">
-                  <h4 className="h4 service-item-title">Web Development</h4>
-                  <p className="service-item-text">
-                    High-quality development of responsive websites and web applications using modern technologies like React and Node.js.
-                  </p>
-                </div>
-              </motion.li>              <motion.li 
-                className="service-item"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="service-icon-box">
-                  <img src="./assets/images/icon-app.svg" alt="Cloud Solutions icon" width="40" />
-                </div>
-                <div className="service-content-box">
-                  <h4 className="h4 service-item-title">Cloud Solutions</h4>
-                  <p className="service-item-text">
-                    Scalable backend services and cloud architecture using AWS Amplify, Firebase, and Azure for robust application infrastructure.
-                  </p>
-                </div>
-              </motion.li>              <motion.li 
-                className="service-item"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.4 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="service-icon-box">
-                  <img src="./assets/images/icon-photo.svg" alt="API Integration icon" width="40" />
-                </div>
-                <div className="service-content-box">
-                  <h4 className="h4 service-item-title">API Integration</h4>
-                  <p className="service-item-text">
-                    Expert integration of third-party APIs, payment gateways like Stripe, and social authentication systems for enhanced functionality.
-                  </p>
-                </div>
-              </motion.li>
+          {/* Experience Timeline */}
+          <motion.section className="experience-section" {...fadeUp(0.6)}>
+            <h3 className="h3 service-title">Professional Experience</h3>
+            <div className="timeline">
+              {experience.map((job, i) => (
+                <motion.div
+                  key={i}
+                  className="timeline-item"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.7 + i * 0.15 }}
+                >
+                  <div className="timeline-header">
+                    <div className="timeline-left">
+                      <h4 className="timeline-role">{job.role}</h4>
+                      <p className="timeline-company">{job.company}</p>
+                    </div>
+                    <span className="timeline-period">{job.period}</span>
+                  </div>
+                  <ul className="timeline-bullets">
+                    {job.bullets.map((b, j) => (
+                      <li key={j}>{b}</li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* What I'm Doing */}
+          <motion.section className="service" {...fadeUp(0.7)}>
+            <h3 className="h3 service-title">What I'm Doing</h3>
+            <ul className="service-list">
+              {[
+                { icon: 'phone-portrait-outline', title: 'Mobile Apps', text: 'Cross-platform production apps for iOS & Android using React Native and Flutter — from architecture to App Store release.' },
+                { icon: 'globe-outline', title: 'Web Development', text: 'Responsive web apps and backends with React, Next.js, and Node.js deployed on Vercel and cloud platforms.' },
+                { icon: 'cloud-outline', title: 'Cloud & DevOps', text: 'Scalable infrastructure with Firebase, Supabase, and EAS CI/CD; automated releases with GitHub Actions and CodePush OTA.' },
+                { icon: 'shield-checkmark-outline', title: 'Auth & Security', text: 'OAuth 2.0, biometric authentication, encrypted local storage, and secure API integration across platforms.' },
+              ].map((s, i) => (
+                <motion.li
+                  key={i}
+                  className="service-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 + i * 0.15 }}
+                  whileHover={{ y: -8, scale: 1.03, transition: { duration: 0.3 } }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="service-icon-box">
+                    <ion-icon name={s.icon} style={{ fontSize: '36px', color: '#fad76e' }}></ion-icon>
+                  </div>
+                  <div className="service-content-box">
+                    <h4 className="h4 service-item-title">{s.title}</h4>
+                    <p className="service-item-text">{s.text}</p>
+                  </div>
+                </motion.li>
+              ))}
             </ul>
-          </motion.section>        </motion.article>     
-             {/* Resume Section */}
-     
-          {/* Projects Section */}
-        <article className={`portfolio ${activePage === 'projects' ? 'active' : ''}`} data-page="projects" style={{ display: activePage === 'projects' ? 'block' : 'none' }}>
+          </motion.section>
+        </motion.article>
+
+        {/* ── PROJECTS ── */}
+        <article
+          className={`portfolio ${activePage === 'projects' ? 'active' : ''}`}
+          data-page="projects"
+          style={{ display: activePage === 'projects' ? 'block' : 'none' }}
+        >
           <header>
             <h2 className="h2 article-title">Projects</h2>
-          </header>          <section className="projects">
+          </header>
+          <section className="projects">
             <div className="project-grid">
-              <motion.div 
-                className="project-card active" 
-                data-filter-item 
-                data-category="react native"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="project-content">
-                  <h3 className="project-title">Sandlines</h3>
-                  <p className="project-description">Voter engagement platform built with React Native, TypeScript, Firebase, and Stripe integration for secure payments and real-time data synchronization.</p>
-                  <div className="project-technologies">
-                    <span className="tech-badge">React Native</span>
-                    <span className="tech-badge">TypeScript</span>
-                    <span className="tech-badge">Firebase</span>
-                    <span className="tech-badge">Stripe</span>
+              {projects.map((proj, i) => (
+                <motion.div
+                  key={i}
+                  className="project-card active"
+                  data-filter-item
+                  data-category="react native"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
+                  whileHover={{ y: -8, scale: 1.03, transition: { duration: 0.3 } }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="project-content">
+                    <div className="project-title-row">
+                      <h3 className="project-title">{proj.title}</h3>
+                      <span className="project-subtitle">{proj.subtitle}</span>
+                    </div>
+                    <p className="project-description">{proj.description}</p>
+                    <div className="project-technologies">
+                      {proj.tags.map((tag, j) => (
+                        <span key={j} className="tech-badge">{tag}</span>
+                      ))}
+                    </div>
+                    <div className="project-actions">
+                      {proj.links.map((link, k) => (
+                        <a
+                          key={k}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-store-btn"
+                        >
+                          <ion-icon name={link.icon}></ion-icon>
+                          <span>{link.label}</span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                  <a href="https://apps.apple.com/us/app/sandlines/id6469634537" 
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                     className="project-link">
-                    <span style={{ 
-                      background: '#ffffff',
-                      color: '#000000',
-                      marginTop: '20px',
-                      padding: '10px 20px',
-                      borderRadius: '30px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      fontSize: '0.95em',
-                      fontWeight: '500',
-                      boxShadow: '0 4px 15px rgba(255, 255, 255, 0.15)',
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer',
-                      border: '1px solid rgba(255, 255, 255, 0.2)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 255, 255, 0.25)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 255, 255, 0.15)';
-                    }}>
-                      Take me there <ion-icon name="rocket-outline" style={{ fontSize: '1.2em' }}></ion-icon>
-                    </span>
-                  </a>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="project-card active" 
-                data-filter-item 
-                data-category="react native"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="project-content">
-                  <h3 className="project-title">RippleStreet</h3>
-                  <p className="project-description">Social event platform leveraging React Native and AWS Amplify for scalable backend services, user authentication, and real-time event management.</p>
-                  <div className="project-technologies">
-                    <span className="tech-badge">React Native</span>
-                    <span className="tech-badge">AWS Amplify</span>
-                    <span className="tech-badge">Authentication</span>
-              
-                  </div>
-                  <a href="https://apps.apple.com/us/app/ripple-street/id1623388148" 
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                     className="project-link">
-                    <span style={{ 
-                      background: '#ffffff',
-                      color: '#000000',
-                      marginTop: '20px',
-                      padding: '10px 20px',
-                      borderRadius: '30px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      fontSize: '0.95em',
-                      fontWeight: '500',
-                      boxShadow: '0 4px 15px rgba(255, 255, 255, 0.15)',
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer',
-                      border: '1px solid rgba(255, 255, 255, 0.2)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 255, 255, 0.25)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 255, 255, 0.15)';
-                    }}>
-                      Take me there <ion-icon name="rocket-outline" style={{ fontSize: '1.2em' }}></ion-icon>
-                    </span>
-                  </a>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="project-card active" 
-                data-filter-item 
-                data-category="react native"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="project-content">
-                  <h3 className="project-title">Noritz Procard</h3>
-                  <p className="project-description">Professional installer tool with local database management, data encryption, and offline functionality for field technicians.</p>
-                  <div className="project-technologies">
-                    <span className="tech-badge">React Native</span>
-                    <span className="tech-badge">SQLite</span>
-                    <span className="tech-badge">Encryption</span>
-                    <span className="tech-badge">Offline</span>
-                  </div>
-                  <a href="https://play.google.com/store/apps/details?id=com.org.noritz" 
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                     className="project-link">
-                    <span style={{ 
-                      background: '#ffffff',
-                      color: '#000000',
-                      marginTop: '20px',
-                      padding: '10px 20px',
-                      borderRadius: '30px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      fontSize: '0.95em',
-                      fontWeight: '500',
-                      boxShadow: '0 4px 15px rgba(255, 255, 255, 0.15)',
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer',
-                      border: '1px solid rgba(255, 255, 255, 0.2)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 255, 255, 0.25)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 255, 255, 0.15)';
-                    }}>
-                      Take me there <ion-icon name="rocket-outline" style={{ fontSize: '1.2em' }}></ion-icon>
-                    </span>
-                  </a>
-                </div>              </motion.div>
-
-              <motion.div 
-                className="project-card active" 
-                data-filter-item 
-                data-category="flutter"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="project-content">
-                  <h3 className="project-title">Face App</h3>
-                  <p className="project-description">Face detection application built with Flutter and Google ML Kit for real-time facial recognition and analysis features.</p>
-                  <div className="project-technologies">
-                    <span className="tech-badge">Flutter</span>
-                    <span className="tech-badge">Google ML Kit</span>
-                    <span className="tech-badge">Computer Vision</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="project-card active" 
-                data-filter-item 
-                data-category="react native"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.03,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="project-content">
-                  <h3 className="project-title">Identify That</h3>
-                  <p className="project-description">Plant identification app using React Native with Wikipedia API integration for comprehensive plant information and recognition capabilities.</p>
-                  <div className="project-technologies">
-                    <span className="tech-badge">React Native</span>
-                    <span className="tech-badge">Wikipedia API</span>
-                    <span className="tech-badge">Image Recognition</span>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              ))}
             </div>
           </section>
         </article>
 
-        {/* Skills Section */}
-        <article className={`skills ${activePage === 'skills' ? 'active' : ''}`} data-page="skills" style={{ display: activePage === 'skills' ? 'block' : 'none' }}>
+        {/* ── SKILLS ── */}
+        <article
+          className={`skills ${activePage === 'skills' ? 'active' : ''}`}
+          data-page="skills"
+          style={{ display: activePage === 'skills' ? 'block' : 'none' }}
+        >
           <header>
             <h2 className="h2 article-title">Skills</h2>
           </header>
-
           <section className="skills-content">
-            {/* Cross-platform & Native Development */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >              <h3 className="skills-category-title">Cross-platform & Native Development</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon react-native">
-                    <ion-icon name="phone-portrait-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">React Native</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon ios">
-                    <ion-icon name="logo-apple"></ion-icon>
-                  </div>                  <span className="skill-name">iOS (Swift)</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon flutter">
-                    <ion-icon name="diamond-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Flutter</span>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Languages & Packages */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >              <h3 className="skills-category-title">Languages & Packages</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon javascript">
-                    <ion-icon name="logo-javascript"></ion-icon>
-                  </div>
-                  <span className="skill-name">JavaScript</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon typescript">
-                    <ion-icon name="code-slash-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">TypeScript</span>
-                </motion.div>
-              </div>
-            </motion.div>            {/* State Management & Navigation */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <h3 className="skills-category-title">State Management & Navigation</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon redux">
-                    <ion-icon name="logo-react"></ion-icon>
-                  </div>
-                  <span className="skill-name">React Redux</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon navigation">
-                    <ion-icon name="navigate-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">React Navigation</span>
-                </motion.div>
-              </div>
-            </motion.div>            {/* Backend & Cloud Services */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <h3 className="skills-category-title">Backend & Cloud Services</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.0 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon nodejs">
-                    <ion-icon name="logo-nodejs"></ion-icon>
-                  </div>
-                  <span className="skill-name">Node.js</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.1 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon express">
-                    <ion-icon name="server-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Express.js</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.2 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon aws">
-                    <ion-icon name="cloud-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">AWS Amplify</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.3 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon azure">
-                    <ion-icon name="layers-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">MS Azure</span>
-                </motion.div>
-              </div>
-            </motion.div>            {/* Databases & Authentication */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-            >
-              <h3 className="skills-category-title">Databases & Authentication</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.4 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon firestore">
-                    <ion-icon name="flame-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Firebase Firestore</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.5 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon auth">
-                    <ion-icon name="shield-checkmark-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Firebase Authentication</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.6 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon functions">
-                    <ion-icon name="flash-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Cloud Functions</span>
-                </motion.div>
-              </div>
-            </motion.div>            {/* Push & Notifications */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-            >
-              <h3 className="skills-category-title">Push & Notifications</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.7 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon notifications">
-                    <ion-icon name="notifications-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Firebase Push Notifications</span>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Monetization & Payments */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
-            >
-              <h3 className="skills-category-title">Monetization & Payments</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.8 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon stripe">
-                    <ion-icon name="card-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Stripe</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.9 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon admob">
-                    <ion-icon name="trending-up-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Google AdMob</span>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* APIs & Integrations */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.6 }}
-            >
-              <h3 className="skills-category-title">APIs & Integrations</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 2.0 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon places">
-                    <ion-icon name="location-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Google Places Autocomplete</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 2.1 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon woocommerce">
-                    <ion-icon name="storefront-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">WooCommerce API</span>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Development Tools & Collaboration */}
-            <motion.div 
-              className="skills-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.8 }}
-            >
-              <h3 className="skills-category-title">Development Tools & Collaboration</h3>
-              <div className="skills-grid">
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 2.2 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon xcode">
-                    <ion-icon name="logo-apple"></ion-icon>
-                  </div>
-                  <span className="skill-name">Xcode</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 2.3 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon android-studio">
-                    <ion-icon name="logo-android"></ion-icon>
-                  </div>
-                  <span className="skill-name">Android Studio</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 2.4 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon vscode">
-                    <ion-icon name="code-slash-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">VSCode</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 2.5 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon git">
-                    <ion-icon name="git-branch-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Git</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 2.6 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon devops">
-                    <ion-icon name="people-outline"></ion-icon>
-                  </div>
-                  <span className="skill-name">Azure DevOps</span>
-                </motion.div>
-                <motion.div 
-                  className="skill-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 2.7 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.03,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="skill-icon github">
-                    <ion-icon name="logo-github"></ion-icon>
-                  </div>
-                  <span className="skill-name">GitHub</span>
-                </motion.div>
-              </div>
-            </motion.div>
+            {skillCategories.map((cat, i) => (
+              <motion.div
+                key={i}
+                className="skills-category"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.06 }}
+              >
+                <h3 className="skills-category-title">{cat.title}</h3>
+                <div className="skill-tags">
+                  {cat.tags.map((tag, j) => (
+                    <motion.span
+                      key={j}
+                      className={`skill-tag ${cat.accent ? 'skill-tag--accent' : ''}`}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 0.2 + i * 0.06 + j * 0.03 }}
+                      whileHover={{ y: -3, scale: 1.05 }}
+                    >
+                      {tag}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </section>
-        </article>   
-                <article className={`resume ${activePage === 'resume' ? 'active' : ''}`} data-page="resume" style={{ display: activePage === 'resume' ? 'block' : 'none' }}>
+        </article>
+
+        {/* ── RESUME ── */}
+        <article
+          className={`resume ${activePage === 'resume' ? 'active' : ''}`}
+          data-page="resume"
+          style={{ display: activePage === 'resume' ? 'block' : 'none' }}
+        >
           <header>
             <h2 className="h2 article-title">Resume</h2>
           </header>
 
- 
+          <motion.div className="resume-actions" {...fadeUp(0.2)}>
+            <a
+              href="/assets/resume/Subhashish_Tarafdar_Resume.pdf"
+              download
+              className="resume-download-btn"
+            >
+              <ion-icon name="download-outline"></ion-icon>
+              Download Resume (PDF)
+            </a>
+          </motion.div>
 
-          <section className="resume-preview">
-            <div className="title-wrapper">
-              <div className="icon-box">
-                <ion-icon name="document-text-outline"></ion-icon>
-              </div>
+          <motion.section className="resume-preview" {...fadeUp(0.3)}>
+            <div className="resume-preview-header">
               <h3 className="h3">Resume Preview</h3>
+              <div className="zoom-controls">
+                <button
+                  className="zoom-btn"
+                  onClick={() => setResumeZoom(z => Math.max(ZOOM_MIN, parseFloat((z - ZOOM_STEP).toFixed(1))))}
+                  disabled={resumeZoom <= ZOOM_MIN}
+                  title="Zoom out"
+                >
+                  <ion-icon name="remove-outline"></ion-icon>
+                </button>
+                <span className="zoom-label">{Math.round(resumeZoom * 100)}%</span>
+                <button
+                  className="zoom-btn"
+                  onClick={() => setResumeZoom(z => Math.min(ZOOM_MAX, parseFloat((z + ZOOM_STEP).toFixed(1))))}
+                  disabled={resumeZoom >= ZOOM_MAX}
+                  title="Zoom in"
+                >
+                  <ion-icon name="add-outline"></ion-icon>
+                </button>
+                <button
+                  className="zoom-btn zoom-reset"
+                  onClick={() => setResumeZoom(1)}
+                  title="Reset zoom"
+                >
+                  <ion-icon name="refresh-outline"></ion-icon>
+                </button>
+              </div>
             </div>
             <div className="pdf-preview">
-              <iframe
-                src="/assets/resume/Subhashish_Tarafdar.pdf"
-                width="100%"
-                height="600"
-                style={{
-                  border: '1px solid var(--jet)',
-                  borderRadius: '16px',
-                  backgroundColor: 'var(--eerie-black-2)'
-                }}
-                title="Resume Preview">
-                <p>Your browser does not support PDFs. <a href="/assets/resume/Subhashish_Tarafdar.pdf">Download the PDF</a>.</p>
-              </iframe>
+              <div className="iframe-zoom-wrapper" style={{ height: `${900 * resumeZoom}px` }}>
+                <iframe
+                  src="/assets/resume/Subhashish_Tarafdar_Resume.html"
+                  width="100%"
+                  height="900"
+                  style={{
+                    border: 'none',
+                    borderRadius: '16px',
+                    backgroundColor: '#fff',
+                    transform: `scale(${resumeZoom})`,
+                    transformOrigin: 'top left',
+                    width: `${100 / resumeZoom}%`,
+                  }}
+                  title="Resume Preview"
+                >
+                  <p>Unable to load preview. <a href="/assets/resume/Subhashish_Tarafdar_Resume.pdf">Download the PDF</a>.</p>
+                </iframe>
+              </div>
             </div>
-          </section>        </article>   
-               {/* Contact Section */}
-        <article className={`contact ${activePage === 'contact' ? 'active' : ''}`} data-page="contact" style={{ display: activePage === 'contact' ? 'block' : 'none' }}>
+          </motion.section>
+        </article>
+
+        {/* ── CONTACT ── */}
+        <article
+          className={`contact ${activePage === 'contact' ? 'active' : ''}`}
+          data-page="contact"
+          style={{ display: activePage === 'contact' ? 'block' : 'none' }}
+        >
           <header>
             <h2 className="h2 article-title">Contact</h2>
-          </header>          <section className="mapbox" data-mapbox>
+          </header>
+
+          <section className="mapbox" data-mapbox>
             <figure>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d226697.52002081395!2d73.03059944726562!3d28.01783080!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393744e7c5c33db1%3A0x73328ac51ac3d7c8!2sBikaner%2C%20Rajasthan%2C%20India!5e0!3m2!1sen!2sin!4v1647608789441!5m2!1sen!2sin"
-                width="400" height="300" loading="lazy" title="Google Map"></iframe>
+                width="400" height="300" loading="lazy" title="Google Map"
+              ></iframe>
             </figure>
           </section>
 
-          <section className="contact-form">
-            <h3 className="h3 form-title">Contact Form</h3>
-
-            <form action="#" className="form" data-form>
-              <div className="input-wrapper">
-                <input type="text" name="fullname" className="form-input" placeholder="Full name" required data-form-input />
-                <input type="email" name="email" className="form-input" placeholder="Email address" required data-form-input />
-              </div>
-
-              <textarea name="message" className="form-input" placeholder="Your Message" required data-form-input></textarea>
-
-              <button className="form-btn" type="submit" data-form-btn>
-                <ion-icon name="paper-plane"></ion-icon>
-                <span>Send Message</span>
-              </button>
-            </form>
+          <section className="contact-cta">
+            <p className="contact-cta-text">Have a project in mind or want to hire me?</p>
+            <a
+              href="mailto:iamanshu97@gmail.com?subject=Hiring%20Opportunity&body=Hi%20Subhashish%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
+              className="contact-me-btn"
+            >
+              <ion-icon name="mail-outline"></ion-icon>
+              Contact Me
+            </a>
           </section>
         </article>
+
       </motion.div>
     </motion.main>
   );
 }
 
 export default App;
-
