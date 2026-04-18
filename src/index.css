@@ -340,6 +340,17 @@ main {
 
 .sidebar.active { max-height: 405px; }
 
+@media (max-width: 579px) {
+  .sidebar {
+    max-height: 136px;
+  }
+
+  .sidebar.active {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
 .sidebar-info {
   position: relative;
   display: flex;
