@@ -1118,13 +1118,13 @@ article.active {
   border: none !important;
   box-shadow: none !important;
   background: transparent !important;
-  overflow: visible !important;
+  overflow: hidden !important;
 }
 
 .avatar-glow::before {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: 0;
   border-radius: 50%;
   background: linear-gradient(135deg, #fad76e 0%, #a78bfa 50%, #67e8f9 100%);
   z-index: 0;
@@ -1134,7 +1134,7 @@ article.active {
 .avatar-glow::after {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: 0;
   border-radius: 50%;
   box-shadow:
     0 0 28px rgba(250, 215, 110, 0.45),
@@ -1147,13 +1147,20 @@ article.active {
 .avatar-glow img {
   position: relative;
   z-index: 1;
-  width: 100px;
-  height: 100px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
   border-radius: 50%;
   object-fit: cover;
   display: block;
   box-shadow: 0 0 0 4px var(--page-bg, #0a0a0f);
   transition: box-shadow 0.4s ease;
+}
+
+@media (max-width: 579px) {
+  .avatar-glow {
+    width: 96px;
+    height: 96px;
+  }
 }
 
 /* =================================
