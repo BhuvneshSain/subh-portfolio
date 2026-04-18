@@ -985,6 +985,7 @@ article.active {
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1084,5 +1085,600 @@ article.active {
 
   .pcp-title {
     font-size: 17px;
+  }
+}
+
+/* =================================
+   ACCENT VARIABLES (dark only)
+   ================================= */
+
+:root {
+  --accent-primary: #fad76e;
+  --accent-secondary: #e8c250;
+  --accent-purple: #a78bfa;
+  --accent-cyan: #67e8f9;
+  --accent-rose: #fb7185;
+  --spotlight-color: rgba(250, 215, 110, 0.055);
+  --progress-bar: linear-gradient(90deg, #fad76e, #a78bfa, #67e8f9);
+  --page-bg: #0a0a0f;
+}
+
+/* =================================
+   AVATAR GLOW RING – fixed circular
+   ================================= */
+
+.avatar-glow {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+.avatar-glow::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fad76e 0%, #a78bfa 50%, #67e8f9 100%);
+  z-index: 0;
+  animation: pulse-glow 2.6s ease-in-out infinite;
+}
+
+.avatar-glow::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 28px rgba(250, 215, 110, 0.45),
+    0 0 12px rgba(167, 139, 250, 0.3),
+    0 0 6px rgba(103, 232, 249, 0.2);
+  animation: pulse-glow 2.6s ease-in-out infinite;
+  z-index: 0;
+}
+
+.avatar-glow img {
+  position: relative;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 0 4px var(--page-bg, #0a0a0f);
+  transition: box-shadow 0.4s ease;
+}
+
+/* =================================
+   UPDATED GRADIENT ACCENTS
+   ================================= */
+
+/* Multicolor progress bar */
+.scroll-progress {
+  background: var(--progress-bar, linear-gradient(90deg, #fad76e, #a78bfa, #67e8f9)) !important;
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.5) !important;
+}
+
+/* Nav pill — gold to purple gradient */
+.nav-pill {
+  background: linear-gradient(90deg, var(--accent-primary, #fad76e), var(--accent-purple, #a78bfa)) !important;
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.4) !important;
+}
+
+/* Featured badge — tri-color */
+.pcp-featured-badge {
+  background: linear-gradient(135deg, #fad76e 0%, #f97316 50%, #fb7185 100%) !important;
+  color: #fff !important;
+}
+
+/* Primary button — gold to purple */
+.pcp-btn-primary {
+  background: linear-gradient(135deg, #fad76e 0%, #f59e0b 50%, #a78bfa 100%) !important;
+  color: #0f0f18 !important;
+}
+
+/* Resume download button */
+.resume-download-btn {
+  background: linear-gradient(135deg, #fad76e 0%, #f59e0b 50%, #a78bfa 100%) !important;
+  color: #0f0f18 !important;
+}
+
+/* Contact me button */
+.contact-me-btn {
+  background: linear-gradient(135deg, #fad76e 0%, #f59e0b 50%, #a78bfa 100%) !important;
+  color: #0f0f18 !important;
+}
+
+/* =================================
+   CURSOR SPOTLIGHT
+   ================================= */
+
+.cursor-spotlight {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    var(--spotlight-color, rgba(250,215,110,0.055)) 0%,
+    transparent 70%
+  );
+  transition: left 0.08s linear, top 0.08s linear;
+  will-change: left, top;
+}
+
+/* =================================
+   SCROLL PROGRESS BAR
+   ================================= */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #fad76e, #e8c250);
+  transform-origin: left;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(250, 215, 110, 0.6);
+}
+
+/* =================================
+   INTRO SPLASH CURTAIN
+   ================================= */
+
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.intro-top,
+.intro-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: #0d0d0d;
+}
+
+.intro-top { top: 0; }
+.intro-bottom { bottom: 0; }
+
+.intro-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 1;
+}
+
+.intro-name {
+  font-size: clamp(26px, 5vw, 46px);
+  font-weight: 800;
+  color: #fad76e;
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin: 0;
+}
+
+.intro-title-text {
+  font-size: clamp(13px, 2vw, 18px);
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+/* =================================
+   PARTICLE CANVAS (sidebar)
+   ================================= */
+
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@keyframes spin-ring {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+/* Keep desktop header styling from index.css and disable the moving pill. */
+.nav-pill {
+  display: none !important;
+}
+
+/* =================================
+   RIPPLE EFFECT
+   ================================= */
+
+.ripple-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple-anim 0.62s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: translate(-50%, -50%) scale(30);
+    opacity: 0;
+  }
+}
+
+/* =================================
+   BACK TO TOP BUTTON
+   ================================= */
+
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  background: rgba(13, 13, 13, 0.85);
+  border: 1px solid rgba(250, 215, 110, 0.2);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  color: #fad76e;
+  font-size: 18px;
+  padding: 0;
+}
+
+.back-to-top svg {
+  position: absolute;
+  inset: 0;
+}
+
+.back-to-top ion-icon {
+  position: relative;
+  z-index: 1;
+  font-size: 17px;
+}
+
+/* =================================
+   TIMELINE LINE
+   ================================= */
+
+.timeline {
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  left: -18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #fad76e, rgba(250, 215, 110, 0.15));
+  transform-origin: top;
+  border-radius: 2px;
+}
+
+/* =================================
+   SHIMMER CARD (service items)
+   ================================= */
+
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(250, 215, 110, 0.07) 50%,
+    transparent 65%
+  );
+  background-size: 200% 100%;
+  background-position: -200% 0;
+  pointer-events: none;
+  transition: none;
+}
+
+.shimmer-card:hover .shimmer-sweep {
+  animation: shimmer-sweep 0.75s ease forwards;
+}
+
+@keyframes shimmer-sweep {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+/* =================================
+   PROJECT CARD – image blur-up load
+   ================================= */
+
+.pcp-image {
+  filter: blur(8px);
+  transition: filter 0.5s ease, transform 0.55s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.pcp-image--loaded {
+  filter: blur(0);
+}
+
+/* image clickable to open modal */
+.pcp-image-clickable {
+  cursor: pointer;
+}
+
+/* expand hint icon on hover */
+.pcp-image-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.28);
+  z-index: 5;
+  pointer-events: none;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* vignette overlay on image */
+.pcp-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  pointer-events: none;
+}
+
+/* =================================
+   ANIMATED GRADIENT BACKGROUND
+   ================================= */
+
+body {
+  animation: bg-shift 16s ease-in-out infinite alternate;
+}
+
+@keyframes bg-shift {
+  0% {
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(167,139,250,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(250,215,110,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(103,232,249,0.04) 0%, transparent 50%);
+  }
+  50% {
+    background-image:
+      radial-gradient(ellipse at 60% 30%, rgba(250,215,110,0.06) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 80%, rgba(167,139,250,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 60%, rgba(103,232,249,0.04) 0%, transparent 50%);
+  }
+  100% {
+    background-image:
+      radial-gradient(ellipse at 80% 70%, rgba(103,232,249,0.05) 0%, transparent 55%),
+      radial-gradient(ellipse at 40% 10%, rgba(250,215,110,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 10% 50%, rgba(167,139,250,0.06) 0%, transparent 50%);
+  }
+}
+
+/* =================================
+   LINK UNDERLINE DRAW
+   ================================= */
+
+.contact-link,
+.magnetic-link {
+  position: relative;
+  display: inline-block;
+}
+
+.contact-link::after,
+.magnetic-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 0;
+  background: #fad76e;
+  transition: width 0.3s ease;
+}
+
+.contact-link:hover::after,
+.magnetic-link:hover::after {
+  width: 100%;
+}
+
+/* =================================
+   SECTION HEADERS – letter spacing
+   ================================= */
+
+.h2.article-title,
+.h3.service-title,
+.skills-category-title {
+  letter-spacing: 0.08em;
+}
+
+/* =================================
+   REDUCED MOTION SAFETY
+   ================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .intro-splash { display: none; }
+  .cursor-spotlight { display: none; }
+}
+
+/* =================================
+   PROJECT PREVIEW MODAL
+   ================================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-card {
+  position: relative;
+  background: #14141e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 88vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(250,215,110,0.1);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(250,215,110,0.2) transparent;
+}
+
+.modal-card::-webkit-scrollbar { width: 4px; }
+.modal-card::-webkit-scrollbar-track { background: transparent; }
+.modal-card::-webkit-scrollbar-thumb { background: rgba(250,215,110,0.25); border-radius: 4px; }
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(250,215,110,0.15);
+  color: #fad76e;
+}
+
+.modal-image-wrap {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+  flex-shrink: 0;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.modal-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(20,20,30,0.9) 100%);
+}
+
+.modal-body {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #f0f0f8;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+.modal-description {
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(240,240,248,0.7);
+  margin: 0;
+}
+
+.modal-section-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #fad76e;
+  margin-top: 6px;
+}
+
+.modal-tech-row {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+
+/* =================================
+   MOBILE – back to top position
+   ================================= */
+
+@media (max-width: 580px) {
+  .back-to-top {
+    bottom: 90px;
+    right: 16px;
   }
 }
