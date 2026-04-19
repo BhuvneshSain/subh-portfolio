@@ -1067,32 +1067,6 @@ function App() {
                 </motion.li>
               ))}
             </ul>
-            <div className="separator" />
-            <ul className="social-list">
-              {[
-                {
-                  href: "https://www.linkedin.com/in/subhashish-tarafdar-1692331a4/",
-                  icon: "logo-linkedin",
-                },
-                { href: "https://github.com/suburaj97", icon: "logo-github" },
-              ].map((s, i) => (
-                <motion.li
-                  key={i}
-                  className="social-item"
-                  whileHover={{ y: -5, scale: 1.2 }}
-                  whileTap={{ scale: 0.88 }}
-                >
-                  <a
-                    href={s.href}
-                    className="social-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ion-icon name={s.icon} />
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
           </div>
         </motion.aside>
 
