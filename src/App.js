@@ -780,6 +780,24 @@ function App() {
           url: "https://play.google.com/store/apps/details?id=com.noritz.iot&hl=en_IN",
         },
       ],
+      featured: true,
+    },
+     {
+      title: "impos Mobile Pay",
+      label: "Project Nexus",
+      description:
+        "Native iOS POS app built at Patona Digital integrating Tyro Tap-to-Pay SDK and Apple ProximityReader (iOS 18+) for card-reader-free contactless payments directly on iPhone. Covers real-time table management across floors, order detail views, split cheque with partial-payment handling, item transfer between tables, table merge/change, kitchen and table messaging, meal status tracking, discount management, and receipt generation.",
+      image: "/assets/images/impos.png",
+      tech: [
+        "Swift",
+        "SwiftUI",
+        "Tyro Tap-to-Pay SDK",
+        "ProximityReader",
+        "POS",
+        "REST API",
+      ],
+      links: [],
+      
     },
     {
       title: "Sandlines",
@@ -866,9 +884,19 @@ function App() {
 
   const experience = [
     {
+      role: "Sr. Software Engineer",
+      company: "Patona Digital · Remote",
+      period: "May 2026 – Present",
+      bullets: [
+        "Building impos Mobile Pay — a native iOS POS app in Swift/SwiftUI for the hospitality industry, integrating Tyro Tap-to-Pay SDK and Apple ProximityReader (iOS 18+) to enable contactless payments directly on iPhone without a physical card terminal.",
+        "Engineered real-time table management across floors including order detail views, split cheque with partial-payment handling, item transfer, table merge/change, and table locking to prevent concurrent edits.",
+        "Implemented kitchen and table messaging flows, meal status tracking, discount management, and receipt generation end-to-end.",
+      ],
+    },
+    {
       role: "Senior Software Engineer – Mobile & Full-Stack",
       company: "Bacancy Technology · Remote",
-      period: "Jan 2024 – Present",
+      period: "Jan 2024 – Apr 2026",
       bullets: [
         "Led full-stack delivery for enterprise products across iOS/Android and web backends (Next.js/Node.js) deployed on Vercel; managed App Store Connect and Play Console pipelines end-to-end.",
         "Integrated Google Maps, geolocation, and GPS tracking enabling real-time location workflows and geofencing for field-facing mobile users.",
